@@ -56,5 +56,6 @@ const styles = StyleSheet.create({
   helloText: {
     fontSize: 30,
     marginLeft: 15,
+    fontWeight: "600",
   },
 });

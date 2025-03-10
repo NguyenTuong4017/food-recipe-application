@@ -17,7 +17,6 @@ const styles = StyleSheet.create({
     alignItems: "center",
     width: "100%",
     height: "30%",
-    //backgroundColor: "purple",
-    bottom: "35%",
+    //backgroundColor: "red",
   },
 });
