@@ -2,6 +2,7 @@ import { StyleSheet, Text, TextInput, View } from "react-native";
 import GlassIcon from "../../../assets/icons/glassicon.svg";
 export default function SearchBar() {
   return (
+    // glass icon and TextInput
     <View style={styles.container}>
       <GlassIcon style={styles.icon} height={"50%"} />
       <TextInput
