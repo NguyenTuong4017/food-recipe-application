@@ -6,10 +6,16 @@ import FoodCard from "./BodyComponents/Template/FoodCard";
 import FoodMenu from "./BodyComponents/FoodMenu";
 
 export default function Body() {
+  const [allRecipes, setAllRecipes] = useState<Array<Object>>([]);
+
+  const handleRecipesUpdate = (recipes: Array<Object>) => {
+    setAllRecipes(recipes);
+  };
+
   return (
     <View style={styles.container}>
-      <SortButtons />
-      <FoodMenu />
+      <SortButtons OnFetchRecipe={handleRecipesUpdate} />
+      <FoodMenu allRecipes={allRecipes} />
     </View>
   );
 }

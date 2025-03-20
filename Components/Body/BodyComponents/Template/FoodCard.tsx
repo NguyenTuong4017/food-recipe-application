@@ -9,13 +9,13 @@ import { LinearGradient } from "expo-linear-gradient";
 
 interface FoodCardProps {
   name: string;
-  imgUrl: ImageSourcePropType;
+  imgUrl: string;
 }
 
 export default function FoodCard({ name, imgUrl }: FoodCardProps) {
   return (
     <View style={styles.card}>
-      <Image source={imgUrl} style={styles.foodThumb} />
+      <Image source={{ uri: imgUrl }} style={styles.foodThumb} />
       <LinearGradient
         colors={["transparent", "rgba(0, 0, 0, 1)"]}
         style={styles.gradient}

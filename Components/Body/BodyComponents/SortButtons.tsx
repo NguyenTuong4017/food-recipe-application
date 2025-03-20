@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ScrollView,
   StyleSheet,
@@ -7,9 +7,15 @@ import {
   View,
 } from "react-native";
 
-import { useNavigation } from "@react-navigation/native";
+import { fetchRecipe } from "../../../Fetch/fetch";
 
-export default function SortButtons() {
+interface SortButtonsProps {
+  OnFetchRecipe: (recipes: any[]) => void;
+}
+
+export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
+  const [allRecipes, setAllRecipes] = useState([]);
+
   const [layers, setLayers] = useState([
     {
       id: 0,
@@ -47,6 +53,23 @@ export default function SortButtons() {
     },
   ]);
 
+  //Get the recipes from API
+  const handleFetch = () => {
+    fetchRecipe()
+      .then((data) => {
+        const transformedData = data.results.map(
+          (item: Object, index: number) => ({
+            ...item,
+            index: index,
+          })
+        );
+
+        setAllRecipes(transformedData);
+        OnFetchRecipe(transformedData);
+      })
+      .catch((error) => console.error("Fetching error: ", error));
+  };
+
   //A function to set the width of the navigate buttons dynamically based on its text
   const handleLayout = (id: number, textWidth: number) => {
     const newWidth = textWidth + 50;
@@ -59,6 +82,11 @@ export default function SortButtons() {
       )
     );
   };
+
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
   return (
     <View style={styles.container}>
       <ScrollView

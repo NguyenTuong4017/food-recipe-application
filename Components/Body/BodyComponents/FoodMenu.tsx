@@ -5,64 +5,40 @@ import Animated, {
   withSpring,
   interpolate,
 } from "react-native-reanimated";
-import FoodCard from "./Template/FoodCard";
+import AnimatedFoodCard from "./Template/AnimatedFoodCard";
 import {
   Gesture,
   GestureDetector,
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 
-const sampleData = [
-  {
-    id: 0,
-    name: "Seafood Spaghetti",
-    imgUrl: require("../../../assets/sampleData/IMG_6471.jpeg"),
-    curr: "yes",
-  },
-  {
-    id: 1,
-    name: "Carbonara",
-    imgUrl: require("../../../assets/sampleData/IMG_6515.jpeg"),
-    curr: "no",
-  },
-  {
-    id: 2,
-    name: "Shawarma",
-    imgUrl: require("../../../assets/sampleData/IMG_7442.jpeg"),
-    curr: "no",
-  },
-  {
-    id: 3,
-    name: "Steak",
-    imgUrl: require("../../../assets/sampleData/IMG_7519.jpeg"),
-    curr: "no",
-  },
-  {
-    id: 4,
-    name: "Croissant",
-    imgUrl: require("../../../assets/sampleData/IMG_9158.jpeg"),
-    curr: "no",
-  },
-];
-
-const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
+//Set the width and space for each card
+const { width: screenWidth } = Dimensions.get("window");
 const cardWidth = screenWidth * 0.69;
 const spacing = 20;
 
-export default function FoodMenu() {
+interface FoodMenuProps {
+  allRecipes: any;
+}
+
+export default function FoodMenu({ allRecipes }: FoodMenuProps) {
   const translateX = useSharedValue(0);
   const currentIndex = useSharedValue(0);
-  const cardHeight = useSharedValue(100);
 
+  //A function to handle the swiping
   const panGesture = Gesture.Pan()
+    //when user start swiping
     .onUpdate((event) => {
+      //set the translateX value to the current translateX when user swipe
       translateX.value =
         event.translationX - currentIndex.value * (cardWidth + spacing);
     })
 
+    //when user stop swiping
     .onEnd((event) => {
+      //set the currentIndex as the current card
       if (event.velocityX < -500 || event.translationX < -cardWidth / 2) {
-        if (currentIndex.value < sampleData.length - 1) {
+        if (currentIndex.value < allRecipes.length - 1) {
           currentIndex.value += 1;
         }
       } else if (event.velocityX > 500 || event.translationX > cardWidth / 2) {
@@ -70,6 +46,8 @@ export default function FoodMenu() {
           currentIndex.value -= 1;
         }
       }
+
+      //animation when user swiping
       translateX.value = withSpring(
         -currentIndex.value * (cardWidth + spacing),
         {
@@ -79,51 +57,30 @@ export default function FoodMenu() {
       console.log("currentIndex after swipe:", currentIndex.value);
     });
 
+  //move the next card foward and current card out of screen
   const animatedStyle = useAnimatedStyle(() => ({
     transform: [{ translateX: translateX.value }],
   }));
 
   return (
     <GestureHandlerRootView style={styles.container}>
-      <Text style={styles.quantity}>{sampleData.length} recipes</Text>
+      <Text style={styles.quantity}>{allRecipes.length} recipes</Text>
       <GestureDetector gesture={panGesture}>
         <Animated.View style={[animatedStyle, styles.foodList]}>
-          {sampleData.map((item, index) => {
-            const cardAnimatedStyle = useAnimatedStyle(() => {
-              const cardPosition =
-                translateX.value + index * (cardWidth + spacing);
-
-              if (Math.abs(cardPosition) > screenWidth) {
-                return { opacity: 0, height: screenHeight * 0.5 }; // Hide off-screen cards
-              }
-
-              return {
-                opacity: interpolate(
-                  cardPosition,
-                  [-cardWidth, 0, cardWidth],
-                  [0, 1, 1]
-                ),
-
-                height: interpolate(
-                  cardPosition,
-                  [-cardWidth, 0, cardWidth],
-                  [100, screenHeight * 0.55, screenHeight * 0.5]
-                ),
-              };
-            });
-            return (
-              <Animated.View
+          {allRecipes.map(
+            (item: {
+              id: number;
+              title: string;
+              image: string;
+              index: number;
+            }) => (
+              <AnimatedFoodCard
                 key={item.id}
-                style={[
-                  styles.cardContainer,
-                  { width: cardWidth },
-                  cardAnimatedStyle,
-                ]}
-              >
-                <FoodCard name={item.name} imgUrl={item.imgUrl} />
-              </Animated.View>
-            );
-          })}
+                item={item}
+                translateX={translateX}
+              />
+            )
+          )}
         </Animated.View>
       </GestureDetector>
     </GestureHandlerRootView>
@@ -148,14 +105,7 @@ const styles = StyleSheet.create({
     height: "85%",
     flexDirection: "row",
   },
-  cardContainer: {
-    marginHorizontal: spacing / 2,
-    alignSelf: "flex-end",
-    shadowColor: "#000",
-    shadowOffset: { width: 3, height: 5 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
-  },
+
   flatListContent: {
     gap: 0,
     padding: 0,
