@@ -1,20 +1,15 @@
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import { useState } from "react";
 
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-
 import SortButtons from "./BodyComponents/SortButtons";
-import AllRecipePage from "./BodyComponents/Pages/AllRecipePage";
-import MainCoursePage from "./BodyComponents/Pages/MainCousresPage";
-import BreakfastPage from "./BodyComponents/Pages/BreakfastPage";
-import LunchPage from "./BodyComponents/Pages/LunchPage";
-import DinnerPage from "./BodyComponents/Pages/DinnerPage";
+import FoodCard from "./BodyComponents/Template/FoodCard";
+import FoodMenu from "./BodyComponents/FoodMenu";
 
 export default function Body() {
   return (
     <View style={styles.container}>
       <SortButtons />
+      <FoodMenu />
     </View>
   );
 }

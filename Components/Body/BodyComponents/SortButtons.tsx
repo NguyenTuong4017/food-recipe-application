@@ -7,13 +7,44 @@ import {
   View,
 } from "react-native";
 
+import { useNavigation } from "@react-navigation/native";
+
 export default function SortButtons() {
   const [layers, setLayers] = useState([
-    { id: 0, title: "All", width: 0, page: "AllRecipePage" },
-    { id: 1, title: "Main Courses", width: 0, page: "MainCoursePage" },
-    { id: 2, title: "Breakfast", width: 0, page: "BreakfastPage" },
-    { id: 3, title: "Lunch", width: 0, page: "LunchPage" },
-    { id: 4, title: "Dinner", width: 0, page: "DinnerPage" },
+    {
+      id: 0,
+      title: "All",
+      width: 0,
+      page: "AllRecipePage",
+    },
+
+    {
+      id: 1,
+      title: "Main Courses",
+      width: 0,
+      page: "MainCoursePage",
+    },
+
+    {
+      id: 2,
+      title: "Breakfast",
+      width: 0,
+      page: "BreakfastPage",
+    },
+
+    {
+      id: 3,
+      title: "Lunch",
+      width: 0,
+      page: "LunchPage",
+    },
+
+    {
+      id: 4,
+      title: "Dinner",
+      width: 0,
+      page: "DinnerPage",
+    },
   ]);
 
   //A function to set the width of the navigate buttons dynamically based on its text
@@ -73,6 +104,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     marginLeft: 5,
+    left: 10,
     borderRadius: 50,
     height: "70%",
   },
