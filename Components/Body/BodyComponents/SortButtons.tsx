@@ -14,10 +14,10 @@ interface SortButtonsProps {
 }
 
 export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
-  const [allRecipes, setAllRecipes] = useState([]);
   const [type, setType] = useState({
     type: "all",
     maxReadyTime: "500",
+    number: "50",
   });
 
   const [layers, setLayers] = useState([
@@ -68,8 +68,8 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
   ]);
 
   //Get the recipes from API
-  const handleFetch = (type: string, maxReadyTime: string) => {
-    fetchRecipe(type, maxReadyTime)
+  const handleFetch = (type: string, maxReadyTime: string, number: string) => {
+    fetchRecipe(type, maxReadyTime, number)
       .then((data) => {
         const transformedData = data.results.map(
           (item: Object, index: number) => ({
@@ -77,8 +77,7 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
             index: index,
           })
         );
-
-        setAllRecipes(transformedData);
+        //pass the data to body component
         OnFetchRecipe(transformedData);
       })
       .catch((error) => console.error("Fetching error: ", error));
@@ -97,16 +96,22 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
     );
   };
 
+  const randomNum = () => {
+    const randomNumber = Math.floor(Math.random() * (75 - 50 + 1)) + 50;
+    return randomNumber.toString();
+  };
+
   //move to the section which is clicked by user
   const hanldePress = (section: string, time: string) => {
     setType({
       type: section,
       maxReadyTime: time,
+      number: randomNum(),
     });
   };
 
   useEffect(() => {
-    handleFetch(type.type, type.maxReadyTime);
+    handleFetch(type.type, type.maxReadyTime, type.number);
   }, [type]);
 
   return (

@@ -1,7 +1,7 @@
 import { API_KEY } from "@env";
 
-export async function fetchRecipe(type, maxReadyTime) {
-  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=all&type=${type}&addRecipeInformation=true&maxReadyTime=${maxReadyTime}&offset=4&number=50`;
+export async function fetchRecipe(type, maxReadyTime, number) {
+  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=all&type=${type}&addRecipeInformation=true&maxReadyTime=${maxReadyTime}&offset=4&number=${number}`;
   const options = {
     method: "GET",
     headers: {

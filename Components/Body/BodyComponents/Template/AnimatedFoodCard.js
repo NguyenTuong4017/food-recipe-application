@@ -42,7 +42,11 @@ const AnimatedFoodCard = ({ item, translateX }) => {
       key={item.id}
       style={[{ width: cardWidth }, cardAnimatedStyle, styles.cardContainer]}
     >
-      <FoodCard name={item.title} imgUrl={item.image} recipeId={item.id} />
+      <FoodCard
+        name={item.title}
+        imgUrl={item.image}
+        readyInMinutes={item.readyInMinutes}
+      />
     </Animated.View>
   );
 };

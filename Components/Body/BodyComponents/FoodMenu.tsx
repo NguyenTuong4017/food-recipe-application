@@ -73,6 +73,7 @@ export default function FoodMenu({ allRecipes }: FoodMenuProps) {
               title: string;
               image: string;
               index: number;
+              readyInMinutes: number;
             }) => (
               <AnimatedFoodCard
                 key={item.id}
