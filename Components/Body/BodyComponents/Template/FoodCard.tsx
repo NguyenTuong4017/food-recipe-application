@@ -6,13 +6,40 @@ import {
   ImageSourcePropType,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
+import { fetchRecipeInfo } from "../../../../Fetch/fetch";
+import { useEffect, useState } from "react";
 
 interface FoodCardProps {
   name: string;
   imgUrl: string;
+  recipeId: number;
 }
 
-export default function FoodCard({ name, imgUrl }: FoodCardProps) {
+function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
+export default function FoodCard({ name, imgUrl, recipeId }: FoodCardProps) {
+  const [recipeInfo, setRecipeInfo] = useState({ readyInMinutes: "" });
+
+  const handleFetch = () => {
+    fetchRecipeInfo(recipeId)
+      .then((data) => {
+        setRecipeInfo(data);
+        console.log(data.readyInMinutes);
+      })
+      .catch((err) => console.log("Fetch error: " + err));
+  };
+
+  useEffect(() => {
+    handleFetch();
+  }, []);
+
+  const fakeMin = () => {
+    const randomNumber = Math.floor(Math.random() * (50 - 10 + 1)) + 10;
+    return randomNumber.toString();
+  };
+
   return (
     <View style={styles.card}>
       <Image source={{ uri: imgUrl }} style={styles.foodThumb} />
@@ -29,7 +56,10 @@ export default function FoodCard({ name, imgUrl }: FoodCardProps) {
           {name}
         </Text>
         <View style={styles.timeContainer}>
-          <Text style={{ fontSize: 16, color: "#FFFFFF" }}>25 mins</Text>
+          <Text style={{ fontSize: 16, color: "#FFFFFF" }}>
+            {recipeInfo.readyInMinutes ? recipeInfo.readyInMinutes : fakeMin()}{" "}
+            mins
+          </Text>
         </View>
       </View>
     </View>

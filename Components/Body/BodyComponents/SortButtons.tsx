@@ -15,6 +15,10 @@ interface SortButtonsProps {
 
 export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
   const [allRecipes, setAllRecipes] = useState([]);
+  const [type, setType] = useState({
+    type: "all",
+    maxReadyTime: "500",
+  });
 
   const [layers, setLayers] = useState([
     {
@@ -22,6 +26,8 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
       title: "All",
       width: 0,
       page: "AllRecipePage",
+      section: "all",
+      time: "500",
     },
 
     {
@@ -29,6 +35,8 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
       title: "Main Courses",
       width: 0,
       page: "MainCoursePage",
+      section: "main%20course",
+      time: "120",
     },
 
     {
@@ -36,6 +44,8 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
       title: "Breakfast",
       width: 0,
       page: "BreakfastPage",
+      section: "side%20dish",
+      time: "30",
     },
 
     {
@@ -43,6 +53,8 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
       title: "Lunch",
       width: 0,
       page: "LunchPage",
+      section: "lunch",
+      time: "60",
     },
 
     {
@@ -50,12 +62,14 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
       title: "Dinner",
       width: 0,
       page: "DinnerPage",
+      section: "dinner",
+      time: "200",
     },
   ]);
 
   //Get the recipes from API
-  const handleFetch = () => {
-    fetchRecipe()
+  const handleFetch = (type: string, maxReadyTime: string) => {
+    fetchRecipe(type, maxReadyTime)
       .then((data) => {
         const transformedData = data.results.map(
           (item: Object, index: number) => ({
@@ -83,9 +97,17 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
     );
   };
 
+  //move to the section which is clicked by user
+  const hanldePress = (section: string, time: string) => {
+    setType({
+      type: section,
+      maxReadyTime: time,
+    });
+  };
+
   useEffect(() => {
-    handleFetch();
-  }, []);
+    handleFetch(type.type, type.maxReadyTime);
+  }, [type]);
 
   return (
     <View style={styles.container}>
@@ -99,14 +121,25 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
         {layers.map((button) => (
           <TouchableOpacity
             key={button.id}
-            style={[styles.buttonContainer, { width: button.width }]}
+            style={[
+              type.type == button.section
+                ? styles.clickedButton
+                : styles.buttonContainer,
+              { width: button.width },
+            ]}
+            onPress={() => hanldePress(button.section, button.time)}
           >
             <Text
               onLayout={(event) => {
                 const textWidth = event.nativeEvent.layout.width;
                 handleLayout(button.id, textWidth);
               }}
-              style={{ fontWeight: "500" }}
+              style={[
+                { fontWeight: "500" },
+                type.type == button.section
+                  ? { color: "#FFFFFF" }
+                  : { color: "#000000" },
+              ]}
             >
               {button.title}
             </Text>
@@ -135,5 +168,16 @@ const styles = StyleSheet.create({
     left: 10,
     borderRadius: 50,
     height: "70%",
+  },
+  clickedButton: {
+    borderWidth: 1.2,
+    padding: 5,
+    alignItems: "center",
+    justifyContent: "center",
+    marginLeft: 5,
+    left: 10,
+    borderRadius: 50,
+    height: "70%",
+    backgroundColor: "#000000",
   },
 });
