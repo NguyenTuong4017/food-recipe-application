@@ -11,9 +11,13 @@ import { fetchRecipe } from "../../../Fetch/fetch";
 
 interface SortButtonsProps {
   OnFetchRecipe: (recipes: any[]) => void;
+  loadingTest: (loading: boolean) => void;
 }
 
-export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
+export default function SortButtons({
+  OnFetchRecipe,
+  loadingTest,
+}: SortButtonsProps) {
   const [type, setType] = useState({
     type: "all",
     maxReadyTime: "500",
@@ -77,8 +81,12 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
             index: index,
           })
         );
+
         //pass the data to body component
         OnFetchRecipe(transformedData);
+
+        //set the loading status then pass to body component
+        loadingTest(false);
       })
       .catch((error) => console.error("Fetching error: ", error));
   };
@@ -108,6 +116,9 @@ export default function SortButtons({ OnFetchRecipe }: SortButtonsProps) {
       maxReadyTime: time,
       number: randomNum(),
     });
+
+    //set the loading status then pass to body component
+    loadingTest(true);
   };
 
   useEffect(() => {
