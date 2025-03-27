@@ -1,14 +1,46 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
 import GlassIcon from "../../../assets/icons/glassicon.svg";
-export default function SearchBar() {
+import { useState } from "react";
+import { fetchRecipeByIngredients } from "../../../Fetch/fetch";
+
+interface SearchBarProps {
+  passRecipeToHeader: (data: any) => void;
+}
+
+export default function SearchBar({ passRecipeToHeader }: SearchBarProps) {
+  const [input, setInput] = useState<string>("");
+  const [ingredientsString, setIngredientsString] = useState("");
+
+  //start fetching after press enter button
+  const handleSubmit = (event: { nativeEvent: { text: string } }) => {
+    let ref = "";
+    const ingredients = event.nativeEvent.text
+      .split(",")
+      .map((word) => word.trim());
+
+    if (ingredients.length === 1) {
+      setIngredientsString(ingredients[0]);
+    } else {
+      ref = ingredients.join("%2C%20");
+      setIngredientsString(ref);
+    }
+    console.log(ingredientsString);
+
+    setInput("");
+    fetchRecipeByIngredients(ref).then((data) => passRecipeToHeader(data));
+  };
+
   return (
     // glass icon and TextInput
     <View style={styles.container}>
       <GlassIcon style={styles.icon} height={"50%"} />
       <TextInput
         style={styles.input}
-        placeholder="Search recipes"
+        placeholder="Search Ingredients"
         selectionColor={"#898989"}
+        value={input}
+        onChangeText={(text) => setInput(text)}
+        onSubmitEditing={(event) => handleSubmit(event)}
       />
     </View>
   );

@@ -1,12 +1,16 @@
 import { StyleSheet, View, Text } from "react-native";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 import SortButtons from "./BodyComponents/SortButtons";
 
 import FoodMenu from "./BodyComponents/FoodMenu";
 import { ActivityIndicator } from "react-native";
 
-export default function Body() {
+interface BodyProps {
+  recipeFromSearchBar: Array<Object>;
+}
+
+export default function Body({ recipeFromSearchBar }: BodyProps) {
   const [allRecipes, setAllRecipes] = useState<Array<Object>>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
 

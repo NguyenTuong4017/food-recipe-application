@@ -49,7 +49,7 @@ export default function SortButtons({
       width: 0,
       page: "BreakfastPage",
       section: "side%20dish",
-      time: "30",
+      time: "20",
     },
 
     {
@@ -58,7 +58,7 @@ export default function SortButtons({
       width: 0,
       page: "LunchPage",
       section: "lunch",
-      time: "60",
+      time: "30",
     },
 
     {

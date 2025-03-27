@@ -2,11 +2,22 @@ import { StyleSheet, View } from "react-native";
 import { Text } from "react-native";
 import UserInfo from "./HeaderComponents/UserInfo";
 import SearchBar from "./HeaderComponents/SearchBar";
-export default function Header() {
+import { useState } from "react";
+
+interface HeaderProps {
+  passRecipeToApp: (recipes: Array<Object>) => void;
+}
+
+export default function Header({ passRecipeToApp }: HeaderProps) {
+  //get recipe from search bar component
+  const handleRecipe = (recipesFromSearchBar: Array<Object>) => {
+    passRecipeToApp(recipesFromSearchBar);
+  };
+
   return (
     <View style={styles.container}>
       <UserInfo />
-      <SearchBar />
+      <SearchBar passRecipeToHeader={handleRecipe} />
     </View>
   );
 }

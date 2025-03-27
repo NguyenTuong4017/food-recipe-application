@@ -37,3 +37,22 @@ export async function fetchRecipeInfo(recipeId) {
     return error;
   }
 }
+
+export async function fetchRecipeByIngredients(ingredients) {
+  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredients}&number=50&ignorePantry=true&ranking=10`;
+  const options = {
+    method: "GET",
+    headers: {
+      "x-rapidapi-key": API_KEY,
+      "x-rapidapi-host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+    },
+  };
+
+  try {
+    const response = await fetch(url, options);
+    const result = await response.json();
+    return result;
+  } catch (error) {
+    return error;
+  }
+}

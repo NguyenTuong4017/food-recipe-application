@@ -4,7 +4,7 @@ import Animated, {
   useAnimatedStyle,
   interpolate,
 } from "react-native-reanimated";
-import FoodCard from "./FoodCard";
+import VerticalFoodCard from "./VerticalFoodCard";
 
 //Separate the animated food card
 
@@ -13,7 +13,7 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const cardWidth = screenWidth * 0.69;
 const spacing = 20;
 
-const AnimatedFoodCard = ({ item, translateX }) => {
+export default function VerticalAnimatedFoodCard({ item, translateX }) {
   //create animation for each card when swiping
   const cardAnimatedStyle = useAnimatedStyle(() => {
     //get the position for each card
@@ -42,14 +42,14 @@ const AnimatedFoodCard = ({ item, translateX }) => {
       key={item.id}
       style={[{ width: cardWidth }, cardAnimatedStyle, styles.cardContainer]}
     >
-      <FoodCard
+      <VerticalFoodCard
         name={item.title}
         imgUrl={item.image}
         readyInMinutes={item.readyInMinutes}
       />
     </Animated.View>
   );
-};
+}
 
 const styles = StyleSheet.create({
   cardContainer: {
@@ -61,4 +61,3 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
   },
 });
-export default AnimatedFoodCard;

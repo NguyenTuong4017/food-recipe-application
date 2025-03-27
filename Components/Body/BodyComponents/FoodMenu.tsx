@@ -5,7 +5,7 @@ import Animated, {
   withSpring,
   interpolate,
 } from "react-native-reanimated";
-import AnimatedFoodCard from "./Template/AnimatedFoodCard";
+import VerticalAnimatedFoodCard from "./Template/VerticalAnimatedFoodCard/VerticalAnimatedFoodCard";
 import {
   Gesture,
   GestureDetector,
@@ -75,7 +75,7 @@ export default function FoodMenu({ allRecipes }: FoodMenuProps) {
               index: number;
               readyInMinutes: number;
             }) => (
-              <AnimatedFoodCard
+              <VerticalAnimatedFoodCard
                 key={item.id}
                 item={item}
                 translateX={translateX}

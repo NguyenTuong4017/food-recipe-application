@@ -6,8 +6,6 @@ import {
   ImageSourcePropType,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import { fetchRecipeInfo } from "../../../../Fetch/fetch";
-import { useEffect, useState } from "react";
 
 interface FoodCardProps {
   name: string;
@@ -15,7 +13,7 @@ interface FoodCardProps {
   readyInMinutes: number;
 }
 
-export default function FoodCard({
+export default function VerticalFoodCard({
   name,
   imgUrl,
   readyInMinutes,
