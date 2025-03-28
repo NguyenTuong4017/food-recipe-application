@@ -12,11 +12,13 @@ import { fetchRecipe } from "../../../Fetch/fetch";
 interface FilterButtonsProps {
   OnFetchRecipe: (recipes: any[]) => void;
   loadingTest: (loading: boolean) => void;
+  resetSearch: () => void;
 }
 
 export default function FilterButtons({
   OnFetchRecipe,
   loadingTest,
+  resetSearch,
 }: FilterButtonsProps) {
   const [type, setType] = useState({
     type: "all",
@@ -109,7 +111,7 @@ export default function FilterButtons({
     return randomNumber.toString();
   };
 
-  //move to the section which is clicked by user
+  //move to the filter button which is clicked by user
   const hanldePress = (section: string, time: string) => {
     setType({
       type: section,
@@ -119,6 +121,9 @@ export default function FilterButtons({
 
     //set the loading status then pass to body component
     loadingTest(true);
+
+    //reset the recipe gotten from search to empty
+    resetSearch();
   };
 
   useEffect(() => {

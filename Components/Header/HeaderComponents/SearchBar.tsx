@@ -18,14 +18,14 @@ export default function SearchBar({ passRecipeToHeader }: SearchBarProps) {
       .split(",")
       .map((word) => word.trim());
 
-    if (ingredients.length === 1) {
-      setIngredientsString(ingredients[0]);
+    if (ingredients.length == 1) {
+      ref = ingredients[0];
+      setIngredientsString(ref);
     } else {
       ref = ingredients.join("%2C%20");
       setIngredientsString(ref);
     }
-    console.log(ingredientsString);
-
+    //reset the value of search bar text to ""
     setInput("");
     fetchRecipeByIngredients(ref).then((data) => passRecipeToHeader(data));
   };

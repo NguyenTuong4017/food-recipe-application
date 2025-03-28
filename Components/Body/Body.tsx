@@ -5,7 +5,6 @@ import FilterButtons from "./BodyComponents/FilterButtons";
 
 import FoodMenu from "./BodyComponents/FoodMenu";
 import { ActivityIndicator } from "react-native";
-import HorizontalFoodCard from "./BodyComponents/Template/HorizontalFoodCard/HorizontalFoodCard";
 
 interface BodyProps {
   recipeFromSearchBar: Array<Object>;
@@ -14,20 +13,44 @@ interface BodyProps {
 export default function Body({ recipeFromSearchBar }: BodyProps) {
   const [allRecipes, setAllRecipes] = useState<Array<Object>>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
+  const [recipeFromSearch, setRecipeFromSearch] = useState<
+    Array<{ index: number }>
+  >([]);
 
   const handleRecipesUpdate = (recipes: Array<Object>) => {
     setAllRecipes(recipes);
   };
 
+  //Handle the loading progress
   const handleLoading = (loading: boolean) => {
     setLoading(loading);
   };
+
+  //Because the object in the recipeFromSearchBar doesn't have index property, this function adds the index to them.
+  const setIndexForRecipeFromSearchBar = () => {
+    const updatedRecipes = recipeFromSearchBar.map((recipe, index) => ({
+      ...recipe,
+      index: index,
+    }));
+
+    setRecipeFromSearch(updatedRecipes);
+  };
+
+  //Reset the recipeFromSearchBar to empty when user clicks a filter button.
+  const resetRecipeFromSearch = () => {
+    setRecipeFromSearch([]);
+  };
+
+  useEffect(() => {
+    setIndexForRecipeFromSearchBar();
+  }, [recipeFromSearchBar]);
 
   return (
     <View style={styles.container}>
       <FilterButtons
         OnFetchRecipe={handleRecipesUpdate}
         loadingTest={handleLoading}
+        resetSearch={resetRecipeFromSearch}
       />
 
       {isLoading ? (
@@ -36,9 +59,12 @@ export default function Body({ recipeFromSearchBar }: BodyProps) {
           <Text>Loading...</Text>
         </View>
       ) : (
-        <FoodMenu allRecipes={allRecipes} />
+        <FoodMenu
+          allRecipes={
+            recipeFromSearch.length > 0 ? recipeFromSearch : allRecipes
+          }
+        />
       )}
-      {/* <HorizontalFoodCard /> */}
     </View>
   );
 }

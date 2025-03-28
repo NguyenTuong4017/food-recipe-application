@@ -40,6 +40,7 @@ export async function fetchRecipeInfo(recipeId) {
 
 export async function fetchRecipeByIngredients(ingredients) {
   const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredients}&number=50&ignorePantry=true&ranking=10`;
+  console.log(url);
   const options = {
     method: "GET",
     headers: {

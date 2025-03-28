@@ -10,13 +10,13 @@ import { LinearGradient } from "expo-linear-gradient";
 interface FoodCardProps {
   name: string;
   imgUrl: string;
-  readyInMinutes: number;
+  likes: number;
 }
 
 export default function VerticalFoodCard({
   name,
   imgUrl,
-  readyInMinutes,
+  likes,
 }: FoodCardProps) {
   return (
     <View style={styles.card}>
@@ -34,9 +34,7 @@ export default function VerticalFoodCard({
           {name}
         </Text>
         <View style={styles.timeContainer}>
-          <Text style={{ fontSize: 16, color: "#FFFFFF" }}>
-            {readyInMinutes} mins
-          </Text>
+          <Text style={{ fontSize: 16, color: "#FFFFFF" }}>{likes} likes</Text>
         </View>
       </View>
     </View>
