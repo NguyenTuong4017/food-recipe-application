@@ -11,12 +11,14 @@ interface FoodCardProps {
   name: string;
   imgUrl: string;
   likes: number;
+  aggregateLikes: number;
 }
 
 export default function VerticalFoodCard({
   name,
   imgUrl,
   likes,
+  aggregateLikes,
 }: FoodCardProps) {
   return (
     <View style={styles.card}>
@@ -34,7 +36,9 @@ export default function VerticalFoodCard({
           {name}
         </Text>
         <View style={styles.timeContainer}>
-          <Text style={{ fontSize: 16, color: "#FFFFFF" }}>{likes} likes</Text>
+          <Text style={{ fontSize: 16, color: "#FFFFFF" }}>
+            {likes != undefined ? likes : aggregateLikes} likes
+          </Text>
         </View>
       </View>
     </View>

@@ -74,6 +74,7 @@ export default function FoodMenu({ allRecipes }: FoodMenuProps) {
               image: string;
               index: number;
               likes: number;
+              aggregateLikes: number;
               readyInMinutes: number;
             }) => (
               <VerticalAnimatedFoodCard

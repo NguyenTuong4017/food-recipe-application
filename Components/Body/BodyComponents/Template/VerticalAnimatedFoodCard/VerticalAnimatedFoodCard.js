@@ -46,6 +46,7 @@ export default function VerticalAnimatedFoodCard({ item, translateX }) {
         name={item.title}
         imgUrl={item.image}
         likes={item.likes}
+        aggregateLikes={item.aggregateLikes}
       />
     </Animated.View>
   );

@@ -1,7 +1,7 @@
 import { API_KEY } from "@env";
 
 export async function fetchRecipe(type, maxReadyTime, number) {
-  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=all&type=${type}&addRecipeInformation=true&maxReadyTime=${maxReadyTime}&offset=4&number=${number}`;
+  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch?query=all&type=${type}&addRecipeInformation=true&maxReadyTime=${maxReadyTime}&offset=4&includeIngredients=all&number=${number}`;
   const options = {
     method: "GET",
     headers: {
@@ -39,8 +39,7 @@ export async function fetchRecipeInfo(recipeId) {
 }
 
 export async function fetchRecipeByIngredients(ingredients) {
-  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredients}&number=50&ignorePantry=true&ranking=10`;
-  console.log(url);
+  const url = `https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/findByIngredients?ingredients=${ingredients}&number=50&ignorePantry=true&ranking=1`;
   const options = {
     method: "GET",
     headers: {
