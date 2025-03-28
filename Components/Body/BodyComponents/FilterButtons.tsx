@@ -95,7 +95,7 @@ export default function FilterButtons({
 
   //A function to set the width of the navigate buttons dynamically based on its text
   const handleLayout = (id: number, textWidth: number) => {
-    const newWidth = textWidth + 50;
+    const newWidth = textWidth + 48;
 
     setLayers((prevLayers) =>
       prevLayers.map((layer) =>
@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     left: 10,
     borderRadius: 50,
-    height: "70%",
+    height: "80%",
   },
   clickedButton: {
     borderWidth: 1.2,
@@ -198,7 +198,7 @@ const styles = StyleSheet.create({
     marginLeft: 5,
     left: 10,
     borderRadius: 50,
-    height: "70%",
+    height: "80%",
     backgroundColor: "#000000",
   },
 });
