@@ -9,15 +9,15 @@ import {
 
 import { fetchRecipe } from "../../../Fetch/fetch";
 
-interface SortButtonsProps {
+interface FilterButtonsProps {
   OnFetchRecipe: (recipes: any[]) => void;
   loadingTest: (loading: boolean) => void;
 }
 
-export default function SortButtons({
+export default function FilterButtons({
   OnFetchRecipe,
   loadingTest,
-}: SortButtonsProps) {
+}: FilterButtonsProps) {
   const [type, setType] = useState({
     type: "all",
     maxReadyTime: "500",

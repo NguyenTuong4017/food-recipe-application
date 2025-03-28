@@ -1,10 +1,11 @@
 import { StyleSheet, View, Text } from "react-native";
 import { useState, useEffect } from "react";
 
-import SortButtons from "./BodyComponents/SortButtons";
+import FilterButtons from "./BodyComponents/FilterButtons";
 
 import FoodMenu from "./BodyComponents/FoodMenu";
 import { ActivityIndicator } from "react-native";
+import HorizontalFoodCard from "./BodyComponents/Template/HorizontalFoodCard/HorizontalFoodCard";
 
 interface BodyProps {
   recipeFromSearchBar: Array<Object>;
@@ -24,7 +25,7 @@ export default function Body({ recipeFromSearchBar }: BodyProps) {
 
   return (
     <View style={styles.container}>
-      <SortButtons
+      <FilterButtons
         OnFetchRecipe={handleRecipesUpdate}
         loadingTest={handleLoading}
       />
@@ -37,6 +38,7 @@ export default function Body({ recipeFromSearchBar }: BodyProps) {
       ) : (
         <FoodMenu allRecipes={allRecipes} />
       )}
+      {/* <HorizontalFoodCard /> */}
     </View>
   );
 }
