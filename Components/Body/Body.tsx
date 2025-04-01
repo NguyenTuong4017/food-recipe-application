@@ -5,6 +5,8 @@ import FilterButtons from "./BodyComponents/FilterButtons";
 
 import FoodMenu from "./BodyComponents/FoodMenu";
 import { ActivityIndicator } from "react-native";
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 
 interface BodyProps {
   recipeFromSearchBar: Array<Object>;
