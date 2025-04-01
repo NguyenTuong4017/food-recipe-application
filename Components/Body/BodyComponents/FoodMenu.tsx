@@ -12,6 +12,9 @@ import {
   GestureHandlerRootView,
 } from "react-native-gesture-handler";
 
+import { NavigationContainer } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
+
 //Set the width and space for each card
 const { width: screenWidth } = Dimensions.get("window");
 const cardWidth = screenWidth * 0.69;
