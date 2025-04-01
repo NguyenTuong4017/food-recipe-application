@@ -1,11 +1,11 @@
 import React from "react";
-import { Dimensions, StyleSheet } from "react-native";
+import { Dimensions, StyleSheet, TouchableOpacity } from "react-native";
 import Animated, {
   useAnimatedStyle,
   interpolate,
 } from "react-native-reanimated";
 import VerticalFoodCard from "./VerticalFoodCard";
-
+import { useNavigation } from "@react-navigation/native";
 //Separate the animated food card
 
 //Set the width and space for each card
@@ -14,6 +14,8 @@ const cardWidth = screenWidth * 0.69;
 const spacing = 20;
 
 export default function VerticalAnimatedFoodCard({ item, translateX }) {
+  const navigation = useNavigation();
+
   //create animation for each card when swiping
   const cardAnimatedStyle = useAnimatedStyle(() => {
     //get the position for each card
@@ -38,17 +40,22 @@ export default function VerticalAnimatedFoodCard({ item, translateX }) {
   });
 
   return (
-    <Animated.View
-      key={item.id}
-      style={[{ width: cardWidth }, cardAnimatedStyle, styles.cardContainer]}
+    <TouchableOpacity
+      onPress={() => navigation.navigate("Recipe", { item })}
+      style={styles.cardContainer}
     >
-      <VerticalFoodCard
-        name={item.title}
-        imgUrl={item.image}
-        likes={item.likes}
-        aggregateLikes={item.aggregateLikes}
-      />
-    </Animated.View>
+      <Animated.View
+        key={item.id}
+        style={[{ width: cardWidth }, cardAnimatedStyle]}
+      >
+        <VerticalFoodCard
+          name={item.title}
+          imgUrl={item.image}
+          likes={item.likes}
+          aggregateLikes={item.aggregateLikes}
+        />
+      </Animated.View>
+    </TouchableOpacity>
   );
 }
 
