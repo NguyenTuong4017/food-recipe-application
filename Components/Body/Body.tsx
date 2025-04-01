@@ -5,8 +5,6 @@ import FilterButtons from "./BodyComponents/FilterButtons";
 
 import FoodMenu from "./BodyComponents/FoodMenu";
 import { ActivityIndicator } from "react-native";
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
 
 interface BodyProps {
   recipeFromSearchBar: Array<Object>;
@@ -15,6 +13,7 @@ interface BodyProps {
 export default function Body({ recipeFromSearchBar }: BodyProps) {
   const [allRecipes, setAllRecipes] = useState<Array<Object>>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
+
   const [recipeFromSearch, setRecipeFromSearch] = useState<
     Array<{ index: number }>
   >([]);
