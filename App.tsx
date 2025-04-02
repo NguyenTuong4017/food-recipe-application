@@ -9,7 +9,7 @@ import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ReturnButton from "./Components/Body/BodyComponents/Template/RecipeTemplate/ReturnButton";
-
+import FavoriteButton from "./Components/Body/BodyComponents/Template/RecipeTemplate/FavoriteButton";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -44,6 +44,7 @@ export default function App() {
             options={({ navigation }) => ({
               headerShown: true,
               headerLeft: () => <ReturnButton navigation={navigation} />,
+              headerRight: () => <FavoriteButton />,
               headerShadowVisible: false,
               headerTitleStyle: {
                 fontSize: 22,
