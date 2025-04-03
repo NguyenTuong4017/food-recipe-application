@@ -4,19 +4,15 @@ import Header from "./Components/Header/Header";
 import Body from "./Components/Body/Body";
 import RecipePage from "./Components/Body/BodyComponents/RecipePage";
 import { useState } from "react";
-import { useFonts } from "expo-font";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ReturnButton from "./Components/Body/BodyComponents/Template/RecipeTemplate/ReturnButton";
 import FavoriteButton from "./Components/Body/BodyComponents/Template/RecipeTemplate/FavoriteButton";
+import useCustomFonts from "./Fonts";
 const Stack = createStackNavigator();
 
 export default function App() {
   const [recipes, setRecipes] = useState<Array<Object>>([]);
-
-  const [fontsLoaded] = useFonts({
-    "Montserrat-Regular": require("./assets/fonts/Montserrat-Regular.ttf"),
-  });
 
   const handleRecipe = (recipesFromSearchBar: Array<Object>) => {
     setRecipes(recipesFromSearchBar);
@@ -52,7 +48,7 @@ export default function App() {
               headerTitleStyle: {
                 fontSize: 22,
                 fontWeight: 500,
-                fontFamily: "Montserrat-Regular",
+                fontFamily: "Montserrat-Medium",
               },
             })}
           />

@@ -39,7 +39,7 @@ export default function FilterButtons({
 
     {
       id: 1,
-      title: "Main Courses",
+      title: "Main",
       width: 0,
       page: "MainCoursePage",
       section: "main%20course",
@@ -134,7 +134,6 @@ export default function FilterButtons({
   return (
     <View style={styles.container}>
       <ScrollView
-        style={styles.container}
         contentContainerStyle={styles.scrollContent}
         horizontal={true}
         showsHorizontalScrollIndicator={false}

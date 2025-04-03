@@ -77,7 +77,6 @@ const styles = StyleSheet.create({
   },
   foodText: {
     color: "#fff",
-    fontWeight: "bold",
     fontFamily: "Montserrat-SemiBold",
   },
   timeContainer: {
