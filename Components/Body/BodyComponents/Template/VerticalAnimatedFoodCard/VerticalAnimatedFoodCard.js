@@ -41,7 +41,7 @@ export default function VerticalAnimatedFoodCard({ item, translateX }) {
 
   return (
     <TouchableOpacity
-      onPress={() => navigation.navigate("Recipe", { item })}
+      onPress={() => navigation.navigate("Recipe", { id: item.id })}
       style={styles.cardContainer}
     >
       <Animated.View
