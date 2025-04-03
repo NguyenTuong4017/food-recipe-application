@@ -6,6 +6,7 @@ import Animated, {
   interpolate,
 } from "react-native-reanimated";
 import VerticalAnimatedFoodCard from "./Template/VerticalAnimatedFoodCard/VerticalAnimatedFoodCard";
+import useCustomFonts from "../../../Fonts";
 import {
   Gesture,
   GestureDetector,
@@ -101,6 +102,7 @@ const styles = StyleSheet.create({
     fontSize: 24,
     marginBottom: 15,
     marginLeft: 20,
+    fontFamily: "Montserrat-Regular",
   },
   foodList: {
     //backgroundColor: "red",

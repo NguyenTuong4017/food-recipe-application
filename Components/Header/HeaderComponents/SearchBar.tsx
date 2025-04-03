@@ -62,6 +62,7 @@ const styles = StyleSheet.create({
     //backgroundColor: "green",
     borderBottomWidth: 1,
     fontSize: 15,
+    fontFamily: "Montserrat-Medium",
   },
 
   icon: {

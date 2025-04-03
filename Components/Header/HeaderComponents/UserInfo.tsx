@@ -1,5 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import MenuIcon from "../../../assets/icons/menuicon.svg";
+import useCustomFonts from "../../../Fonts";
 
 export default function UserInfo() {
   return (
@@ -56,6 +57,6 @@ const styles = StyleSheet.create({
   helloText: {
     fontSize: 30,
     marginLeft: 15,
-    fontWeight: "600",
+    fontFamily: "Montserrat-SemiBold",
   },
 });

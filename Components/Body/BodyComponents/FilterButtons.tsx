@@ -8,6 +8,7 @@ import {
 } from "react-native";
 
 import { fetchRecipe } from "../../../Fetch/fetch";
+import useCustomFonts from "../../../Fonts";
 
 interface FilterButtonsProps {
   OnFetchRecipe: (recipes: any[]) => void;
@@ -156,7 +157,7 @@ export default function FilterButtons({
                 handleLayout(button.id, textWidth);
               }}
               style={[
-                { fontWeight: "500" },
+                { fontFamily: "Montserrat-Medium" },
                 type.type == button.section
                   ? { color: "#FFFFFF" }
                   : { color: "#000000" },

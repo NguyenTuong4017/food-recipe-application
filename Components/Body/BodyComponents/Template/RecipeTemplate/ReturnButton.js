@@ -7,7 +7,7 @@ export default function ReturnButton({ navigation }) {
       onPress={() => navigation.goBack()}
       style={styles.container}
     >
-      <ArrowLeft width={30} height={30} />
+      <ArrowLeft width={25} height={25} />
     </TouchableOpacity>
   );
 }
@@ -15,8 +15,8 @@ export default function ReturnButton({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     //borderWidth: 1,
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,

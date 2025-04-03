@@ -6,7 +6,7 @@ import {
   ImageSourcePropType,
 } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-
+import useCustomFonts from "../../../../../Fonts";
 interface FoodCardProps {
   name: string;
   imgUrl: string;
@@ -36,7 +36,13 @@ export default function VerticalFoodCard({
           {name}
         </Text>
         <View style={styles.timeContainer}>
-          <Text style={{ fontSize: 16, color: "#FFFFFF" }}>
+          <Text
+            style={{
+              fontSize: 16,
+              color: "#FFFFFF",
+              fontFamily: "Montserrat-Regular",
+            }}
+          >
             {likes != undefined ? likes : aggregateLikes} likes
           </Text>
         </View>
@@ -72,6 +78,7 @@ const styles = StyleSheet.create({
   foodText: {
     color: "#fff",
     fontWeight: "bold",
+    fontFamily: "Montserrat-SemiBold",
   },
   timeContainer: {
     backgroundColor: "rgba(217, 217, 217, 0.46)",

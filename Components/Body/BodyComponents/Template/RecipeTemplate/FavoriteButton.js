@@ -13,9 +13,9 @@ export default function FavoriteButton() {
   return (
     <TouchableOpacity style={styles.container} onPress={handleClick}>
       {isClicked == false ? (
-        <Heart width={25} height={25} />
+        <Heart width={20} height={20} />
       ) : (
-        <HeartFill width={25} height={25} />
+        <HeartFill width={20} height={20} />
       )}
     </TouchableOpacity>
   );
@@ -24,8 +24,8 @@ export default function FavoriteButton() {
 const styles = StyleSheet.create({
   container: {
     //borderWidth: 1,
-    width: 50,
-    height: 50,
+    width: 45,
+    height: 45,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
