@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 
 import FilterButtons from "./BodyComponents/FilterButtons";
 
-import FoodMenu from "./BodyComponents/FoodMenu";
+import FoodMenu from "./BodyComponents/RecipeMenu";
 import { ActivityIndicator } from "react-native";
 
 interface BodyProps {

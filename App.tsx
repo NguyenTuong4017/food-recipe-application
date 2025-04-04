@@ -47,8 +47,11 @@ export default function App() {
               headerShadowVisible: false,
               headerTitleStyle: {
                 fontSize: 22,
-                fontWeight: 500,
+                width: "100%",
                 fontFamily: "Montserrat-Medium",
+              },
+              headerStyle: {
+                backgroundColor: "#FFFFFF",
               },
             })}
           />
@@ -61,12 +64,12 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FFFFFF",
     alignItems: "center",
     justifyContent: "center",
   },
   safeArea: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#FFFFFF",
   },
 });

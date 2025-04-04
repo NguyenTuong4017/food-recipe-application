@@ -96,7 +96,7 @@ export default function FilterButtons({
 
   //A function to set the width of the navigate buttons dynamically based on its text
   const handleLayout = (id: number, textWidth: number) => {
-    const newWidth = textWidth + 48;
+    const newWidth = textWidth + 55;
 
     setLayers((prevLayers) =>
       prevLayers.map((layer) =>

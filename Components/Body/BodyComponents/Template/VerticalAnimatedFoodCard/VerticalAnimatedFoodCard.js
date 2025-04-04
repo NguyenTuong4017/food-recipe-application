@@ -63,9 +63,5 @@ const styles = StyleSheet.create({
   cardContainer: {
     marginHorizontal: spacing / 2,
     alignSelf: "flex-end",
-    shadowColor: "#000",
-    shadowOffset: { width: 3, height: 5 },
-    shadowOpacity: 0.3,
-    shadowRadius: 4,
   },
 });

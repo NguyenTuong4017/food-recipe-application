@@ -1,10 +1,13 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
 import { fetchRecipeInfomation } from "../../../Fetch/fetch";
 import { useEffect, useState } from "react";
 import useCustomFonts from "../../../Fonts";
+
 export default function RecipePage({ route }) {
   const { id } = route.params;
   const [recipeInfo, setRecipeInfo] = useState({});
+
+  const fontsLoaded = useCustomFonts();
 
   const handleFetch = () => {
     fetchRecipeInfomation(id)
@@ -20,20 +23,57 @@ export default function RecipePage({ route }) {
     <View style={styles.container}>
       <View style={styles.recipeInfo}>
         <Text style={styles.recipeTitle}>{recipeInfo.title}</Text>
-        <Image source={{ uri: recipeInfo.image }} style={styles.recipeThumb} />
+
+        <View style={styles.styledRecipeThumbWithTime}>
+          <Image
+            source={{ uri: recipeInfo.image }}
+            style={styles.recipeThumb}
+          />
+          <View style={styles.recipeCookedTime}>
+            <Text
+              style={{
+                fontSize: 18,
+                fontFamily: "Montserrat-Medium",
+                color: "#FFFFFF",
+              }}
+            >
+              {recipeInfo.readyInMinutes} mins
+            </Text>
+          </View>
+        </View>
+
         <View style={styles.recipePreparation}>
-          <View style={styles.recipePreparationSmallContainers}>
-            <Text>Servings</Text>
-            <Text>{recipeInfo.servings}</Text>
-          </View>
-          <View style={styles.recipePreparationSmallContainers}>
-            <Text>Likes</Text>
-            <Text>{recipeInfo.aggregateLikes}</Text>
-          </View>
-          <View style={styles.recipePreparationSmallContainers}>
-            <Text>Time</Text>
-            <Text>{recipeInfo.readyInMinutes} mins</Text>
-          </View>
+          <TouchableOpacity style={styles.recipePreparationSmallContainers}>
+            <View>
+              <Text style={styles.recipePreparationTitle}>Servings</Text>
+              <Text style={styles.recipePreparationDesc}>
+                {recipeInfo.servings}
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={[
+              styles.recipePreparationSmallContainers,
+              { backgroundColor: "rgba(217, 217, 217, 0.4)" },
+            ]}
+          >
+            <View>
+              <Text style={styles.recipePreparationTitle}>Likes</Text>
+              <Text style={styles.recipePreparationDesc}>
+                {recipeInfo.aggregateLikes}
+              </Text>
+            </View>
+          </TouchableOpacity>
+
+          <TouchableOpacity style={styles.recipePreparationSmallContainers}>
+            <View>
+              <Text style={styles.recipePreparationTitle}> Time</Text>
+              <Text style={styles.recipePreparationDesc}>
+                {recipeInfo.readyInMinutes} mins
+              </Text>
+            </View>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -42,42 +82,76 @@ export default function RecipePage({ route }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white",
+    backgroundColor: "#FFFFFF",
     flex: 1,
-    //borderWidth: 1,
   },
   recipeInfo: {
     width: "100%",
-    height: "70%",
+    height: "80%",
     marginTop: 30,
-    marginLeft: 15,
-    //backgroundColor: "red",
+
     justifyContent: "space-evenly",
-    //borderWidth: 1,
+    alignItems: "center",
+
+    bottom: 40,
   },
   recipeTitle: {
-    fontFamily: "Montserrat-Medium",
+    fontFamily: "Montserrat-SemiBold",
     fontSize: 30,
-    width: "90%",
-    //borderWidth: 1,
+    width: "93%",
   },
+
   recipeThumb: {
+    width: "100%",
+    height: "100%",
+    borderRadius: 15,
+  },
+  recipeCookedTime: {
+    position: "absolute",
+    width: 100,
+    height: 40,
+    justifyContent: "center",
+    alignItems: "center",
+    borderRadius: 50,
+    backgroundColor: "rgba(217, 217, 217, 0.7)",
+    right: 0,
+    marginTop: 10,
+    marginRight: 10,
+
+    shadowColor: "#000",
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.5,
+    shadowRadius: 4,
+  },
+  styledRecipeThumbWithTime: {
     width: "93%",
     height: "50%",
   },
   recipePreparation: {
-    borderWidth: 1,
     width: "93%",
-    height: "25%",
+    height: "20%",
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
+    borderRadius: 15,
+    backgroundColor: "#F5F5F5",
   },
   recipePreparationSmallContainers: {
-    borderWidth: 1,
-    height: "100%",
+    height: "90%",
     width: "30%",
     alignItems: "center",
     justifyContent: "center",
+    borderRadius: 15,
+  },
+
+  recipePreparationTitle: {
+    fontSize: 20,
+    fontFamily: "Montserrat-SemiBold",
+  },
+
+  recipePreparationDesc: {
+    fontSize: 15,
+    fontFamily: "Montserrat-Medium",
+    marginTop: 5,
   },
 });
