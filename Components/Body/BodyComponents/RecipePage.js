@@ -1,7 +1,9 @@
-import { StyleSheet, Text, View, Image, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, Image } from "react-native";
 import { fetchRecipeInfomation } from "../../../Fetch/fetch";
 import { useEffect, useState } from "react";
 import useCustomFonts from "../../../Fonts";
+
+import NavigationBar from "./Template/RecipePageTemplate/NavigationBar/NavigationBar";
 
 export default function RecipePage({ route }) {
   const { id } = route.params;
@@ -49,29 +51,8 @@ export default function RecipePage({ route }) {
             </Text>
           </View>
         </View>
-
-        {/* navigation bar */}
-        <View style={styles.navigationBar}>
-          {/* Description tab */}
-          <TouchableOpacity style={styles.navigationTab}>
-            <Text style={styles.navigationTabTitle}>Servings</Text>
-          </TouchableOpacity>
-
-          {/* Ingredients tab */}
-          <TouchableOpacity
-            style={[
-              styles.navigationTab,
-              { backgroundColor: "rgba(217, 217, 217, 0.4)" },
-            ]}
-          >
-            <Text style={styles.navigationTabTitle}>Likes</Text>
-          </TouchableOpacity>
-
-          {/* Instruction tab */}
-          <TouchableOpacity style={styles.navigationTab}>
-            <Text style={styles.navigationTabTitle}> Time</Text>
-          </TouchableOpacity>
-        </View>
+        {/*Navigation bar*/}
+        <NavigationBar />
       </View>
     </View>
   );
@@ -123,26 +104,5 @@ const styles = StyleSheet.create({
   styledRecipeThumbWithTime: {
     width: "93%",
     height: "50%",
-  },
-  navigationBar: {
-    width: "93%",
-    height: "20%",
-    flexDirection: "row",
-    justifyContent: "space-around",
-    alignItems: "center",
-    borderRadius: 15,
-    backgroundColor: "#F5F5F5",
-  },
-  navigationTab: {
-    height: "90%",
-    width: "30%",
-    alignItems: "center",
-    justifyContent: "center",
-    borderRadius: 15,
-  },
-
-  navigationTabTitle: {
-    fontSize: 20,
-    fontFamily: "Montserrat-SemiBold",
   },
 });

@@ -27,7 +27,7 @@ export default function FilterButtons({
     number: "50",
   });
 
-  const [layers, setLayers] = useState([
+  const [filters, setFilters] = useState([
     {
       id: 0,
       title: "All",
@@ -98,8 +98,8 @@ export default function FilterButtons({
   const handleLayout = (id: number, textWidth: number) => {
     const newWidth = textWidth + 55;
 
-    setLayers((prevLayers) =>
-      prevLayers.map((layer) =>
+    setFilters((prevfilters) =>
+      prevfilters.map((layer) =>
         layer.id === id && layer.width !== newWidth
           ? { ...layer, width: newWidth }
           : layer
@@ -139,7 +139,7 @@ export default function FilterButtons({
         showsHorizontalScrollIndicator={false}
       >
         {/* map function to show the navigate buttons */}
-        {layers.map((button) => (
+        {filters.map((button) => (
           <TouchableOpacity
             key={button.id}
             style={[

@@ -6,8 +6,9 @@ import RecipePage from "./Components/Body/BodyComponents/RecipePage";
 import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import ReturnButton from "./Components/Body/BodyComponents/Template/RecipeTemplate/ReturnButton";
-import FavoriteButton from "./Components/Body/BodyComponents/Template/RecipeTemplate/FavoriteButton";
+import ReturnButton from "./Components/Body/BodyComponents/Template/RecipePageTemplate/Buttons/ReturnButton";
+import FavoriteButton from "./Components/Body/BodyComponents/Template/RecipePageTemplate/Buttons/FavoriteButton";
+
 import useCustomFonts from "./Fonts";
 const Stack = createStackNavigator();
 

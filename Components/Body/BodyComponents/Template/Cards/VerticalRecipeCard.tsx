@@ -8,7 +8,7 @@ interface FoodCardProps {
   aggregateLikes: number;
 }
 
-export default function VerticalFoodCard({
+export default function VerticalRecipeCard({
   name,
   imgUrl,
   likes,

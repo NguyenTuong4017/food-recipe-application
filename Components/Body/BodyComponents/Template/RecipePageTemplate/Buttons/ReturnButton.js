@@ -1,5 +1,5 @@
 import { TouchableOpacity, Text, View, StyleSheet } from "react-native";
-import ArrowLeft from "../../../../../assets/icons/arrowleft.svg";
+import ArrowLeft from "../../../../../../assets/icons/arrowleft.svg";
 
 export default function ReturnButton({ navigation }) {
   return (

@@ -4,7 +4,7 @@ import Animated, {
   useAnimatedStyle,
   interpolate,
 } from "react-native-reanimated";
-import VerticalFoodCard from "./VerticalFoodCard";
+import VerticalFoodCard from "./VerticalRecipeCard";
 import { useNavigation } from "@react-navigation/native";
 //Separate the animated food card
 
@@ -13,7 +13,7 @@ const { width: screenWidth, height: screenHeight } = Dimensions.get("window");
 const cardWidth = screenWidth * 0.69;
 const spacing = 20;
 
-export default function VerticalAnimatedFoodCard({ item, translateX }) {
+export default function VerticalAnimatedRecipeCard({ item, translateX }) {
   const navigation = useNavigation();
 
   //create animation for each card when swiping

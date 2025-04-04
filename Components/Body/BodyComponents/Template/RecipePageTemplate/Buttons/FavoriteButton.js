@@ -1,6 +1,6 @@
 import { TouchableOpacity, StyleSheet } from "react-native";
-import Heart from "../../../../../assets/icons/heart.svg";
-import HeartFill from "../../../../../assets/icons/heartfill.svg";
+import Heart from "../../../../../../assets/icons/heart.svg";
+import HeartFill from "../../../../../../assets/icons/heartfill.svg";
 import { useState } from "react";
 
 export default function FavoriteButton() {
