@@ -7,28 +7,36 @@ export default function RecipePage({ route }) {
   const { id } = route.params;
   const [recipeInfo, setRecipeInfo] = useState({});
 
+  //get fonts
   const fontsLoaded = useCustomFonts();
 
+  //fetch the recipe data by id
   const handleFetch = () => {
     fetchRecipeInfomation(id)
       .then((data) => setRecipeInfo(data))
       .catch((err) => console.log("Error: ", err));
   };
 
+  //start fetching
   useEffect(() => {
     handleFetch();
   }, []);
 
   return (
     <View style={styles.container}>
+      {/* The container of recipe name, image and navigation bar */}
       <View style={styles.recipeInfo}>
+        {/* recipe name */}
         <Text style={styles.recipeTitle}>{recipeInfo.title}</Text>
 
+        {/* Recipe image with cooking time */}
         <View style={styles.styledRecipeThumbWithTime}>
           <Image
             source={{ uri: recipeInfo.image }}
             style={styles.recipeThumb}
           />
+
+          {/* cooking time styled in a pill shape */}
           <View style={styles.recipeCookedTime}>
             <Text
               style={{
@@ -42,37 +50,26 @@ export default function RecipePage({ route }) {
           </View>
         </View>
 
-        <View style={styles.recipePreparation}>
-          <TouchableOpacity style={styles.recipePreparationSmallContainers}>
-            <View>
-              <Text style={styles.recipePreparationTitle}>Servings</Text>
-              <Text style={styles.recipePreparationDesc}>
-                {recipeInfo.servings}
-              </Text>
-            </View>
+        {/* navigation bar */}
+        <View style={styles.navigationBar}>
+          {/* Description tab */}
+          <TouchableOpacity style={styles.navigationTab}>
+            <Text style={styles.navigationTabTitle}>Servings</Text>
           </TouchableOpacity>
 
+          {/* Ingredients tab */}
           <TouchableOpacity
             style={[
-              styles.recipePreparationSmallContainers,
+              styles.navigationTab,
               { backgroundColor: "rgba(217, 217, 217, 0.4)" },
             ]}
           >
-            <View>
-              <Text style={styles.recipePreparationTitle}>Likes</Text>
-              <Text style={styles.recipePreparationDesc}>
-                {recipeInfo.aggregateLikes}
-              </Text>
-            </View>
+            <Text style={styles.navigationTabTitle}>Likes</Text>
           </TouchableOpacity>
 
-          <TouchableOpacity style={styles.recipePreparationSmallContainers}>
-            <View>
-              <Text style={styles.recipePreparationTitle}> Time</Text>
-              <Text style={styles.recipePreparationDesc}>
-                {recipeInfo.readyInMinutes} mins
-              </Text>
-            </View>
+          {/* Instruction tab */}
+          <TouchableOpacity style={styles.navigationTab}>
+            <Text style={styles.navigationTabTitle}> Time</Text>
           </TouchableOpacity>
         </View>
       </View>
@@ -127,7 +124,7 @@ const styles = StyleSheet.create({
     width: "93%",
     height: "50%",
   },
-  recipePreparation: {
+  navigationBar: {
     width: "93%",
     height: "20%",
     flexDirection: "row",
@@ -136,7 +133,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: "#F5F5F5",
   },
-  recipePreparationSmallContainers: {
+  navigationTab: {
     height: "90%",
     width: "30%",
     alignItems: "center",
@@ -144,14 +141,8 @@ const styles = StyleSheet.create({
     borderRadius: 15,
   },
 
-  recipePreparationTitle: {
+  navigationTabTitle: {
     fontSize: 20,
     fontFamily: "Montserrat-SemiBold",
-  },
-
-  recipePreparationDesc: {
-    fontSize: 15,
-    fontFamily: "Montserrat-Medium",
-    marginTop: 5,
   },
 });
