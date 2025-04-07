@@ -20,7 +20,9 @@ export default function NavigationBar() {
   const tabs = ["Description", "Ingredients", "Instructions"];
   const [selectedTab, setSelectedTab] = useState(0);
   const translateX = useSharedValue(0);
-  const tabHeight = useSharedValue(1000);
+  const tabHeight = useSharedValue(500);
+  const tabOpacity = useSharedValue(1);
+  const tabTranslateY = useSharedValue(0);
 
   //set the selected tab and move the grey box to the selected tab
   const handlePress = (index: number) => {
@@ -28,6 +30,16 @@ export default function NavigationBar() {
     translateX.value = withTiming(index * (navigationBarWidth / tabs.length), {
       duration: 400,
     });
+
+    tabOpacity.value = withSequence(
+      withTiming(0, { duration: 0 }),
+      withTiming(1, { duration: 650 })
+    );
+
+    tabTranslateY.value = withSequence(
+      withTiming(30, { duration: 0 }),
+      withTiming(0, { duration: 650 })
+    );
   };
 
   //set the position for grey box
@@ -38,6 +50,8 @@ export default function NavigationBar() {
   //set the height for tab
   const tabAnimatedStyle = useAnimatedStyle(() => ({
     height: tabHeight.value,
+    opacity: tabOpacity.value,
+    transform: [{ translateY: tabTranslateY.value }],
   }));
 
   return (
