@@ -57,7 +57,11 @@ export default function RecipePage({ route }) {
           </View>
         </View>
       </View>
-      <NavigationBar />
+      <NavigationBar
+        description={recipeInfo.summary}
+        ingredients={recipeInfo.extendedIngredients}
+        instructions={recipeInfo.instructions}
+      />
     </ScrollView>
   );
 }
@@ -69,7 +73,6 @@ const styles = StyleSheet.create({
     //borderWidth: 1,
     width: "100%",
     alignItems: "center",
-    height: 2000,
   },
   recipeInfo: {
     width: "100%",
