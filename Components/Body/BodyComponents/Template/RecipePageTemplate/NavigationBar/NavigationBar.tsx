@@ -91,7 +91,14 @@ export default function NavigationBar({
       </Animated.View>
       {/* tab */}
       <Animated.View style={[tabAnimatedStyle, styles.tab]}>
-        <RenderHTML source={{ html: description }} contentWidth={width} />
+        <RenderHTML
+          source={{ html: description }}
+          contentWidth={width}
+          baseStyle={{
+            fontFamily: "Montserrat-Regular",
+            fontSize: 18,
+          }}
+        />
       </Animated.View>
     </>
   );
