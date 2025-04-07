@@ -12,15 +12,25 @@ import Animated, {
   withTiming,
   withSequence,
 } from "react-native-reanimated";
+import RenderHTML from "react-native-render-html";
 
 const { width } = Dimensions.get("window");
 const navigationBarWidth = width * 0.93;
 
-export default function NavigationBar() {
+interface NavigationBarProps {
+  description: string;
+  ingredients: string[];
+  instructions: string[];
+}
+
+export default function NavigationBar({
+  description,
+  ingredients,
+  instructions,
+}: NavigationBarProps) {
   const tabs = ["Description", "Ingredients", "Instructions"];
   const [selectedTab, setSelectedTab] = useState(0);
   const translateX = useSharedValue(0);
-  const tabHeight = useSharedValue(500);
   const tabOpacity = useSharedValue(1);
   const tabTranslateY = useSharedValue(0);
 
@@ -49,7 +59,6 @@ export default function NavigationBar() {
 
   //set the height for tab
   const tabAnimatedStyle = useAnimatedStyle(() => ({
-    height: tabHeight.value,
     opacity: tabOpacity.value,
     transform: [{ translateY: tabTranslateY.value }],
   }));
@@ -81,7 +90,9 @@ export default function NavigationBar() {
         ))}
       </Animated.View>
       {/* tab */}
-      <Animated.View style={[tabAnimatedStyle, styles.tab]}></Animated.View>
+      <Animated.View style={[tabAnimatedStyle, styles.tab]}>
+        <RenderHTML source={{ html: description }} contentWidth={width} />
+      </Animated.View>
     </>
   );
 }
@@ -120,7 +131,9 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     overflow: "hidden",
-    borderWidth: 2,
+    //borderWidth: 2,
     borderColor: "#adadad",
+    marginBottom: 20,
+    padding: 15,
   },
 });
