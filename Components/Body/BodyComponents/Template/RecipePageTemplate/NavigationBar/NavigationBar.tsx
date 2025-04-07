@@ -10,6 +10,7 @@ import Animated, {
   useAnimatedStyle,
   useSharedValue,
   withTiming,
+  withSequence,
 } from "react-native-reanimated";
 
 const { width } = Dimensions.get("window");
@@ -19,13 +20,20 @@ export default function NavigationBar() {
   const tabs = ["Description", "Ingredients", "Instructions"];
   const [selectedTab, setSelectedTab] = useState(0);
   const translateX = useSharedValue(0);
+  const tabHeight = useSharedValue(1000);
+  const borderRadius = useSharedValue(0);
+  const [isExpand, setExpand] = useState(true);
 
   //set the selected tab and move the grey box to the selected tab
   const handlePress = (index: number) => {
     setSelectedTab(index);
     translateX.value = withTiming(index * (navigationBarWidth / tabs.length), {
-      duration: 250,
+      duration: 400,
     });
+    tabHeight.value = withSequence(
+      withTiming(0, { duration: 500 }),
+      withTiming(1000, { duration: 700 })
+    );
   };
 
   //set the position for grey box
@@ -33,38 +41,53 @@ export default function NavigationBar() {
     transform: [{ translateX: translateX.value }],
   }));
 
-  return (
-    <View style={styles.navigationBar}>
-      {/* grey box */}
-      <Animated.View style={[styles.animatedBox, animatedStyle]} />
+  //set the height for tab
+  const tabAnimatedStyle = useAnimatedStyle(() => ({
+    height: tabHeight.value,
+    borderTopLeftRadius: borderRadius.value,
+    borderTopRightRadius: borderRadius.value,
+  }));
 
-      {/* show the tabs */}
-      {tabs.map((tabTitle, index) => (
-        <TouchableOpacity
-          key={index}
-          style={styles.navigationTab}
-          onPress={() => handlePress(index)}
-        >
-          <Text
-            style={[
-              { fontSize: 15 },
-              selectedTab == index
-                ? { fontFamily: "Montserrat-SemiBold" }
-                : { fontFamily: "Montserrat-Regular" },
-            ]}
+  const barAnimatedStyle = useAnimatedStyle(() => ({
+    borderBottomLeftRadius: borderRadius.value,
+    borderBottomRightRadius: borderRadius.value,
+  }));
+
+  return (
+    <>
+      <Animated.View style={[barAnimatedStyle, styles.navigationBar]}>
+        {/* grey box */}
+        <Animated.View style={[styles.animatedBox, animatedStyle]} />
+
+        {/* show the tabs */}
+        {tabs.map((tabTitle, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.navigationTab}
+            onPress={() => handlePress(index)}
           >
-            {tabTitle}
-          </Text>
-        </TouchableOpacity>
-      ))}
-    </View>
+            <Text
+              style={[
+                { fontSize: 15 },
+                selectedTab == index
+                  ? { fontFamily: "Montserrat-SemiBold" }
+                  : { fontFamily: "Montserrat-Regular" },
+              ]}
+            >
+              {tabTitle}
+            </Text>
+          </TouchableOpacity>
+        ))}
+      </Animated.View>
+      <Animated.View style={[tabAnimatedStyle, styles.tab]}></Animated.View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   navigationBar: {
     width: navigationBarWidth,
-    height: "20%",
+    height: 100,
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
@@ -85,5 +108,14 @@ const styles = StyleSheet.create({
     width: "30%",
     backgroundColor: "#D9D9D9",
     borderRadius: 15,
+  },
+
+  tab: {
+    width: navigationBarWidth,
+    borderRadius: 15,
+    backgroundColor: "#F5F5F5",
+    justifyContent: "flex-start",
+    alignItems: "flex-start",
+    overflow: "hidden",
   },
 });

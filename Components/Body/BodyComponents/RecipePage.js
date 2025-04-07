@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, Image } from "react-native";
+import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { fetchRecipeInfomation } from "../../../Fetch/fetch";
 import { useEffect, useState } from "react";
 import useCustomFonts from "../../../Fonts";
@@ -8,6 +8,7 @@ import NavigationBar from "./Template/RecipePageTemplate/NavigationBar/Navigatio
 export default function RecipePage({ route }) {
   const { id } = route.params;
   const [recipeInfo, setRecipeInfo] = useState({});
+  const [height, setHeight] = useState(0);
 
   //get fonts
   const fontsLoaded = useCustomFonts();
@@ -25,11 +26,15 @@ export default function RecipePage({ route }) {
   }, []);
 
   return (
-    <View style={styles.container}>
+    <ScrollView
+      contentContainerStyle={styles.container}
+      showsVerticalScrollIndicator={false}
+    >
       {/* The container of recipe name, image and navigation bar */}
       <View style={styles.recipeInfo}>
         {/* recipe name */}
         <Text style={styles.recipeTitle}>{recipeInfo.title}</Text>
+        {console.log(recipeInfo.summary)}
 
         {/* Recipe image with cooking time */}
         <View style={styles.styledRecipeThumbWithTime}>
@@ -51,37 +56,40 @@ export default function RecipePage({ route }) {
             </Text>
           </View>
         </View>
-        {/*Navigation bar*/}
-        <NavigationBar />
       </View>
-    </View>
+      <NavigationBar />
+    </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFFFFF",
-    flex: 1,
+
+    //borderWidth: 1,
+    width: "100%",
+    alignItems: "center",
+    height: 2000,
   },
   recipeInfo: {
     width: "100%",
-    height: "80%",
+    height: 300,
     marginTop: 30,
-
-    justifyContent: "space-evenly",
+    justifyContent: "flex-start",
     alignItems: "center",
-
-    bottom: 40,
+    //borderWidth: 1,
+    marginBottom: 25,
   },
   recipeTitle: {
     fontFamily: "Montserrat-SemiBold",
     fontSize: 30,
     width: "93%",
+    marginBottom: 20,
   },
 
   recipeThumb: {
     width: "100%",
-    height: "100%",
+    height: 250,
     borderRadius: 15,
   },
   recipeCookedTime: {
