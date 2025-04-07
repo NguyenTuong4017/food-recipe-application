@@ -34,7 +34,6 @@ export default function RecipePage({ route }) {
       <View style={styles.recipeInfo}>
         {/* recipe name */}
         <Text style={styles.recipeTitle}>{recipeInfo.title}</Text>
-        {console.log(recipeInfo.summary)}
 
         {/* Recipe image with cooking time */}
         <View style={styles.styledRecipeThumbWithTime}>
