@@ -21,8 +21,6 @@ export default function NavigationBar() {
   const [selectedTab, setSelectedTab] = useState(0);
   const translateX = useSharedValue(0);
   const tabHeight = useSharedValue(1000);
-  const borderRadius = useSharedValue(0);
-  const [isExpand, setExpand] = useState(true);
 
   //set the selected tab and move the grey box to the selected tab
   const handlePress = (index: number) => {
@@ -30,10 +28,6 @@ export default function NavigationBar() {
     translateX.value = withTiming(index * (navigationBarWidth / tabs.length), {
       duration: 400,
     });
-    tabHeight.value = withSequence(
-      withTiming(0, { duration: 500 }),
-      withTiming(1000, { duration: 700 })
-    );
   };
 
   //set the position for grey box
@@ -44,18 +38,11 @@ export default function NavigationBar() {
   //set the height for tab
   const tabAnimatedStyle = useAnimatedStyle(() => ({
     height: tabHeight.value,
-    borderTopLeftRadius: borderRadius.value,
-    borderTopRightRadius: borderRadius.value,
-  }));
-
-  const barAnimatedStyle = useAnimatedStyle(() => ({
-    borderBottomLeftRadius: borderRadius.value,
-    borderBottomRightRadius: borderRadius.value,
   }));
 
   return (
     <>
-      <Animated.View style={[barAnimatedStyle, styles.navigationBar]}>
+      <Animated.View style={[styles.navigationBar]}>
         {/* grey box */}
         <Animated.View style={[styles.animatedBox, animatedStyle]} />
 
@@ -79,6 +66,7 @@ export default function NavigationBar() {
           </TouchableOpacity>
         ))}
       </Animated.View>
+      {/* tab */}
       <Animated.View style={[tabAnimatedStyle, styles.tab]}></Animated.View>
     </>
   );
@@ -93,6 +81,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 15,
     backgroundColor: "#F5F5F5",
+    marginBottom: 25,
   },
   navigationTab: {
     height: "90%",
@@ -117,5 +106,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
     alignItems: "flex-start",
     overflow: "hidden",
+    borderWidth: 2,
+    borderColor: "#adadad",
   },
 });
