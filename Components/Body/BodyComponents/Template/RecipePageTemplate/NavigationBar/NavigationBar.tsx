@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   View,
   Text,
@@ -13,13 +13,18 @@ import Animated, {
   withSequence,
 } from "react-native-reanimated";
 import RenderHTML from "react-native-render-html";
+import IngredientCard from "../Cards/IngredientCard";
 
 const { width } = Dimensions.get("window");
 const navigationBarWidth = width * 0.93;
 
 interface NavigationBarProps {
   description: string;
-  ingredients: string[];
+  ingredients: {
+    name: string;
+    image: string;
+    original: string;
+  }[];
   instructions: string[];
 }
 
@@ -33,6 +38,14 @@ export default function NavigationBar({
   const translateX = useSharedValue(0);
   const tabOpacity = useSharedValue(1);
   const tabTranslateY = useSharedValue(0);
+  const [IngreRef, setIngreRef] = useState<
+    {
+      name: string;
+
+      image: string;
+      original: string;
+    }[]
+  >([]);
 
   //set the selected tab and move the grey box to the selected tab
   const handlePress = (index: number) => {
@@ -51,6 +64,23 @@ export default function NavigationBar({
       withTiming(0, { duration: 650 })
     );
   };
+
+  //update the recipe to a new simple object with 3 properties
+  const handleIngredients = () => {
+    if (ingredients) {
+      const updated = ingredients.map((item) => ({
+        name: item.name,
+        image: item.image,
+        original: item.original,
+      }));
+      setIngreRef(updated);
+    }
+  };
+
+  //run the handleIngredients function to handle the updating
+  useEffect(() => {
+    handleIngredients();
+  }, [ingredients]);
 
   //set the position for grey box
   const animatedStyle = useAnimatedStyle(() => ({
@@ -89,16 +119,28 @@ export default function NavigationBar({
           </TouchableOpacity>
         ))}
       </Animated.View>
+
       {/* tab */}
       <Animated.View style={[tabAnimatedStyle, styles.tab]}>
-        <RenderHTML
-          source={{ html: description }}
-          contentWidth={width}
-          baseStyle={{
-            fontFamily: "Montserrat-Regular",
-            fontSize: 18,
-          }}
-        />
+        {selectedTab === 0 ? (
+          <RenderHTML
+            source={{ html: description || "<p>No description provided.</p>" }}
+            contentWidth={width}
+            baseStyle={{
+              fontFamily: "Montserrat-Regular",
+              fontSize: 18,
+            }}
+          />
+        ) : selectedTab === 1 ? (
+          IngreRef.map((item, index) => (
+            <IngredientCard
+              key={index}
+              name={item.name}
+              image={item.image}
+              original={item.original}
+            />
+          ))
+        ) : null}
       </Animated.View>
     </>
   );
@@ -136,7 +178,7 @@ const styles = StyleSheet.create({
     borderRadius: 15,
     backgroundColor: "#F5F5F5",
     justifyContent: "flex-start",
-    alignItems: "flex-start",
+    alignItems: "center",
     overflow: "hidden",
     //borderWidth: 2,
     borderColor: "#adadad",
