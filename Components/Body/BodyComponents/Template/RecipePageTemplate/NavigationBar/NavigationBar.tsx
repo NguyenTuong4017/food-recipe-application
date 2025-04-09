@@ -153,7 +153,7 @@ export default function NavigationBar({
           <View style={{ width: "100%", height: 500 }}>
             <WebView
               originWhitelist={["*"]}
-              source={{ html: wrappedDesc }}
+              source={{ html: wrappedInstruction }}
               style={{ backgroundColor: "transparent" }}
               showsVerticalScrollIndicator={false}
               showsHorizontalScrollIndicator={false}
