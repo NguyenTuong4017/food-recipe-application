@@ -38,6 +38,7 @@ const styles = StyleSheet.create({
   ingreThumb: {
     width: 110,
     height: 110,
+    resizeMode: "cover",
     borderRadius: 15,
   },
 
