@@ -123,7 +123,7 @@ export default function NavigationBar({
           </TouchableOpacity>
         ))}
       </Animated.View>
-      {console.log(wrappedDesc)}
+
       {/* tab */}
       <Animated.View style={[tabAnimatedStyle, styles.tab]}>
         {selectedTab === 0 ? (
