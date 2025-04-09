@@ -68,19 +68,16 @@ export default function RecipePage({ route }) {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: "#FFFFFF",
-
-    //borderWidth: 1,
     width: "100%",
     alignItems: "center",
   },
   recipeInfo: {
     width: "100%",
-    height: 300,
+    flex: 1,
     marginTop: 30,
     justifyContent: "flex-start",
     alignItems: "center",
-    //borderWidth: 1,
-    marginBottom: 25,
+    marginBottom: 15,
   },
   recipeTitle: {
     fontFamily: "Montserrat-SemiBold",
@@ -92,6 +89,7 @@ const styles = StyleSheet.create({
   recipeThumb: {
     width: "100%",
     height: 250,
+    resizeMode: "cover",
     borderRadius: 15,
   },
   recipeCookedTime: {
