@@ -2,12 +2,12 @@ import { StatusBar } from "expo-status-bar";
 import { SafeAreaView, StyleSheet, Text, View } from "react-native";
 import Header from "./Components/Header/Header";
 import Body from "./Components/Body/Body";
-import RecipePage from "./Components/Body/BodyComponents/RecipePage";
+import RecipePage from "./Components/Body/BodyComponents/MainComponents/RecipePage";
 import { useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
-import ReturnButton from "./Components/Body/BodyComponents/Template/RecipePageTemplate/Buttons/ReturnButton";
-import FavoriteButton from "./Components/Body/BodyComponents/Template/RecipePageTemplate/Buttons/FavoriteButton";
+import ReturnButton from "./Components/Body/BodyComponents/SubComponents/RecipePageComponents/Buttons/ReturnButton";
+import FavoriteButton from "./Components/Body/BodyComponents/SubComponents/RecipePageComponents/Buttons/FavoriteButton";
 
 import useCustomFonts from "./Fonts";
 const Stack = createStackNavigator();

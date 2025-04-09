@@ -1,9 +1,9 @@
 import { StyleSheet, View, Text } from "react-native";
 import { useState, useEffect } from "react";
 
-import FilterButtons from "./BodyComponents/FilterButtons";
+import FilterButtons from "./BodyComponents/MainComponents/FilterButtons";
 
-import FoodMenu from "./BodyComponents/RecipeMenu";
+import FoodMenu from "./BodyComponents/MainComponents/RecipeMenu";
 import { ActivityIndicator } from "react-native";
 
 interface BodyProps {
