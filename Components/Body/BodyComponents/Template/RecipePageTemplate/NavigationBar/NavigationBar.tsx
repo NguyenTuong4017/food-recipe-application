@@ -42,7 +42,6 @@ export default function NavigationBar({
   const [IngreRef, setIngreRef] = useState<
     {
       name: string;
-
       image: string;
       original: string;
     }[]
@@ -50,6 +49,8 @@ export default function NavigationBar({
 
   //wrap desc in html format to pass the validation of WebView
   const wrappedDesc = wrapHtml(description);
+  //wrap instruction in html format to pass the validation of WebView
+  const wrappedInstruction = wrapHtml(instructions);
 
   //set the selected tab and move the grey box to the selected tab
   const handlePress = (index: number) => {
@@ -127,8 +128,8 @@ export default function NavigationBar({
       {/* tab */}
       <Animated.View style={[tabAnimatedStyle, styles.tab]}>
         {selectedTab === 0 ? (
+          //Description tab
           <View style={{ width: "100%", height: 500 }}>
-            {/* Description Tab */}
             <WebView
               originWhitelist={["*"]}
               source={{ html: wrappedDesc }}
@@ -147,7 +148,18 @@ export default function NavigationBar({
               original={item.original}
             />
           ))
-        ) : null}
+        ) : (
+          //Instruction tab
+          <View style={{ width: "100%", height: 500 }}>
+            <WebView
+              originWhitelist={["*"]}
+              source={{ html: wrappedDesc }}
+              style={{ backgroundColor: "transparent" }}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
+        )}
       </Animated.View>
     </>
   );
