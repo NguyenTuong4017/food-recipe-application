@@ -43,7 +43,17 @@ export default function Body({ recipeFromSearchBar }: BodyProps) {
   };
 
   useEffect(() => {
-    setIndexForRecipeFromSearchBar();
+    // Start a short loading screen when user open the application / Start a short loading screen when user press enter on keyboard while using search function
+    const startLoadingScreen = async () => {
+      setIndexForRecipeFromSearchBar();
+      setLoading(true);
+
+      await new Promise((resolve) => setTimeout(resolve, 700)); // Wait 700 milisecs
+
+      setLoading(false);
+    };
+
+    startLoadingScreen();
   }, [recipeFromSearchBar]);
 
   return (
