@@ -174,7 +174,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     borderRadius: 15,
     backgroundColor: "#F5F5F5",
-    marginBottom: 25,
+    marginBottom: 20,
   },
   navigationTab: {
     height: "90%",
