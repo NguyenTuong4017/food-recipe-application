@@ -128,7 +128,7 @@ export default function NavigationBar({
       <Animated.View style={[tabAnimatedStyle, styles.tab]}>
         {selectedTab === 0 ? (
           <View style={{ width: "100%", height: 500 }}>
-            {/* HTML string viewer */}
+            {/* Description Tab */}
             <WebView
               originWhitelist={["*"]}
               source={{ html: wrappedDesc }}
@@ -138,6 +138,7 @@ export default function NavigationBar({
             />
           </View>
         ) : selectedTab === 1 ? (
+          // Ingredients Tab
           IngreRef.map((item, index) => (
             <IngredientCard
               key={index}
