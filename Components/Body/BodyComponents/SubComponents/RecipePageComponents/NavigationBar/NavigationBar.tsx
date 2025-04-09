@@ -12,7 +12,7 @@ import Animated, {
   withTiming,
   withSequence,
 } from "react-native-reanimated";
-import IngredientCard from "../Cards/IngredientCard";
+import IngredientCard from "../../Cards/IngredientCard";
 import { wrapHtml } from "../../../../../../wrapHtml";
 import { WebView } from "react-native-webview";
 
