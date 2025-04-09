@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   View,
   Text,
@@ -12,8 +12,9 @@ import Animated, {
   withTiming,
   withSequence,
 } from "react-native-reanimated";
-import RenderHTML from "react-native-render-html";
 import IngredientCard from "../Cards/IngredientCard";
+import { wrapHtml } from "../../../../../../wrapHtml";
+import { WebView } from "react-native-webview";
 
 const { width } = Dimensions.get("window");
 const navigationBarWidth = width * 0.93;
@@ -46,6 +47,9 @@ export default function NavigationBar({
       original: string;
     }[]
   >([]);
+
+  //wrap desc in html format to pass the validation of WebView
+  const wrappedDesc = wrapHtml(description);
 
   //set the selected tab and move the grey box to the selected tab
   const handlePress = (index: number) => {
@@ -119,18 +123,20 @@ export default function NavigationBar({
           </TouchableOpacity>
         ))}
       </Animated.View>
-
+      {console.log(wrappedDesc)}
       {/* tab */}
       <Animated.View style={[tabAnimatedStyle, styles.tab]}>
         {selectedTab === 0 ? (
-          <RenderHTML
-            source={{ html: description || "<p>No description provided.</p>" }}
-            contentWidth={width}
-            baseStyle={{
-              fontFamily: "Montserrat-Regular",
-              fontSize: 18,
-            }}
-          />
+          <View style={{ width: "100%", height: 500 }}>
+            {/* HTML string viewer */}
+            <WebView
+              originWhitelist={["*"]}
+              source={{ html: wrappedDesc }}
+              style={{ backgroundColor: "transparent" }}
+              showsVerticalScrollIndicator={false}
+              showsHorizontalScrollIndicator={false}
+            />
+          </View>
         ) : selectedTab === 1 ? (
           IngreRef.map((item, index) => (
             <IngredientCard
