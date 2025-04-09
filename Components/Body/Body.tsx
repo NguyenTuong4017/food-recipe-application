@@ -46,7 +46,6 @@ export default function Body({ recipeFromSearchBar }: BodyProps) {
     setIndexForRecipeFromSearchBar();
   }, [recipeFromSearchBar]);
 
-  console.log(recipeFromSearchBar);
   return (
     <View style={styles.container}>
       <FilterButtons
