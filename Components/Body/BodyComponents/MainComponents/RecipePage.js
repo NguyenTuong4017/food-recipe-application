@@ -1,9 +1,9 @@
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
-import { fetchRecipeInfomation } from "../../../Fetch/fetch";
+import { fetchRecipeInfomation } from "../../../../Fetch/fetch";
 import { useEffect, useState } from "react";
-import useCustomFonts from "../../../Fonts";
+import useCustomFonts from "../../../../Fonts";
 
-import NavigationBar from "./Template/RecipePageTemplate/NavigationBar/NavigationBar";
+import NavigationBar from "../SubComponents/RecipePageComponents/NavigationBar/NavigationBar";
 
 export default function RecipePage({ route }) {
   const { id } = route.params;

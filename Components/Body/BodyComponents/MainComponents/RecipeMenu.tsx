@@ -5,8 +5,8 @@ import Animated, {
   withSpring,
   interpolate,
 } from "react-native-reanimated";
-import VerticalAnimatedRecipeCard from "./Template/Cards/VerticalAnimatedRecipeCard";
-import useCustomFonts from "../../../Fonts";
+import VerticalAnimatedRecipeCard from "../SubComponents/Cards/VerticalAnimatedRecipeCard";
+import useCustomFonts from "../../../../Fonts";
 import {
   Gesture,
   GestureDetector,
