@@ -8,7 +8,7 @@ import {
 } from "react-native";
 
 import { fetchRecipe } from "../../../../Fetch/fetch";
-import useCustomFonts from "../../../../Fonts";
+import useCustomFonts from "../../../../JavaScriptFiles/Fonts";
 
 interface FilterButtonsProps {
   OnFetchRecipe: (recipes: any[]) => void;

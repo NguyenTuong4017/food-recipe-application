@@ -1,10 +1,10 @@
 import { StyleSheet, View, Text } from "react-native";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 
 import FilterButtons from "./BodyComponents/MainComponents/FilterButtons";
 
 import FoodMenu from "./BodyComponents/MainComponents/RecipeMenu";
-import { ActivityIndicator } from "react-native";
+import LottieView from "lottie-react-native";
 
 interface BodyProps {
   recipeFromSearchBar: Array<Object>;
@@ -13,6 +13,14 @@ interface BodyProps {
 export default function Body({ recipeFromSearchBar }: BodyProps) {
   const [allRecipes, setAllRecipes] = useState<Array<Object>>([]);
   const [isLoading, setLoading] = useState<boolean>(false);
+  const animationRef = useRef<LottieView>(null);
+
+  const replayAnimation = () => {
+    if (animationRef.current) {
+      animationRef.current.reset();
+      animationRef.current.play();
+    }
+  };
 
   const [recipeFromSearch, setRecipeFromSearch] = useState<
     Array<{ index: number }>
@@ -25,6 +33,7 @@ export default function Body({ recipeFromSearchBar }: BodyProps) {
   //Handle the loading progress
   const handleLoading = (loading: boolean) => {
     setLoading(loading);
+    replayAnimation();
   };
 
   //Because the object in the recipeFromSearchBar doesn't have index property, this function adds the index to them.
@@ -66,8 +75,13 @@ export default function Body({ recipeFromSearchBar }: BodyProps) {
 
       {isLoading ? (
         <View style={styles.loadingScreen}>
-          <ActivityIndicator size="large" />
-          <Text>Loading...</Text>
+          <LottieView
+            ref={animationRef}
+            source={require("../../assets/animations/circleLoading.json")}
+            autoPlay
+            loop={false}
+            style={{ width: 100, height: 100 }}
+          />
         </View>
       ) : (
         <FoodMenu

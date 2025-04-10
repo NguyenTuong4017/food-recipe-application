@@ -1,7 +1,7 @@
 import { StyleSheet, Text, View, Image, ScrollView } from "react-native";
 import { fetchRecipeInfomation } from "../../../../Fetch/fetch";
 import { useEffect, useState } from "react";
-import useCustomFonts from "../../../../Fonts";
+import useCustomFonts from "../../../../JavaScriptFiles/Fonts";
 
 import NavigationBar from "../SubComponents/RecipePageComponents/NavigationBar/NavigationBar";
 

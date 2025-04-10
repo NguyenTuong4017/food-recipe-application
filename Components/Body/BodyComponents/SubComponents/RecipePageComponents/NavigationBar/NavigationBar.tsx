@@ -13,7 +13,7 @@ import Animated, {
   withSequence,
 } from "react-native-reanimated";
 import IngredientCard from "../../Cards/IngredientCard";
-import { wrapHtml } from "../../../../../../wrapHtml";
+import { wrapHtml } from "../../../../../../JavaScriptFiles/wrapHtml";
 import { WebView } from "react-native-webview";
 
 const { width } = Dimensions.get("window");

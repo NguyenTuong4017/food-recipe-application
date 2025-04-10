@@ -1,6 +1,6 @@
 import { Image, StyleSheet, View, Text } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
-import useCustomFonts from "../../../../../Fonts";
+import useCustomFonts from "../../../../../JavaScriptFiles/Fonts";
 interface FoodCardProps {
   name: string;
   imgUrl: string;

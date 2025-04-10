@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import MenuIcon from "../../../assets/icons/menuicon.svg";
-import useCustomFonts from "../../../Fonts";
+import useCustomFonts from "../../../JavaScriptFiles/Fonts";
 
 export default function UserInfo() {
   return (
