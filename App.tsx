@@ -9,7 +9,7 @@ import { createStackNavigator } from "@react-navigation/stack";
 import ReturnButton from "./Components/Body/BodyComponents/SubComponents/RecipePageComponents/Buttons/ReturnButton";
 import FavoriteButton from "./Components/Body/BodyComponents/SubComponents/RecipePageComponents/Buttons/FavoriteButton";
 
-import useCustomFonts from "./Fonts";
+import useCustomFonts from "./JavaScriptFiles/Fonts";
 const Stack = createStackNavigator();
 
 export default function App() {
