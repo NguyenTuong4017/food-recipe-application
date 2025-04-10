@@ -15,8 +15,8 @@ export default function ReturnButton({ navigation }) {
 const styles = StyleSheet.create({
   container: {
     //borderWidth: 1,
-    width: 45,
-    height: 45,
+    width: 40,
+    height: 40,
     justifyContent: "center",
     alignItems: "center",
     borderRadius: 50,
