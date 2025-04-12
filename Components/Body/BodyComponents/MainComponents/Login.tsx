@@ -17,7 +17,7 @@ function LoginDivider() {
   return (
     <View style={styles.dividerContainer}>
       <View style={styles.line} />
-      <Text style={styles.dividerText}>Or Login with</Text>
+      <Text style={styles.dividerText}>Or login with</Text>
       <View style={styles.line} />
     </View>
   );
