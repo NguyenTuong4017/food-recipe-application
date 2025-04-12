@@ -74,7 +74,7 @@ export default function Login() {
             Don't have an account?
           </Text>
           <TouchableOpacity style={{ alignSelf: "flex-end" }}>
-            <Text style={[styles.registerText, { color: "#77f7e7" }]}>
+            <Text style={[styles.registerText, { color: "#051220" }]}>
               {" "}
               Register Now
             </Text>
