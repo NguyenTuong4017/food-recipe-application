@@ -11,7 +11,14 @@ import useCustomFonts from "../../../../JavaScriptFiles/Fonts";
 import FacebookIcon from "../../../../assets/icons/facebookicon.svg";
 import XIcon from "../../../../assets/icons/xicon.svg";
 import GoogleIcon from "../../../../assets/icons/googleicon.svg";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import {
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  getAuth,
+} from "firebase/auth";
+import auth from "../../../../FirebaseConfig";
+import { useNavigation } from "@react-navigation/native";
 
 function LoginDivider() {
   return (
@@ -25,7 +32,34 @@ function LoginDivider() {
 
 export default function Login() {
   const fontsLoaded = useCustomFonts();
-  useEffect(() => {}, [fontsLoaded]);
+  const navigation = useNavigation();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  useEffect(() => {
+    const unsubcribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        console.log("Logged in as:", user.email);
+      }
+    });
+
+    return unsubcribe;
+  }, []);
+
+  const handleLogin = async () => {
+    try {
+      const userCredential = await signInWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+      console.log("Login success: ", userCredential.user.email);
+      navigation.navigate("Home");
+    } catch (error) {
+      console.log("Login error: ", error);
+    }
+  };
 
   return (
     <View style={styles.container}>
@@ -36,17 +70,23 @@ export default function Login() {
           style={styles.input}
           placeholder="Enter your email"
           selectionColor="#272727"
+          value={email}
+          onChangeText={(text) => setEmail(text)}
+          keyboardType="email-address"
         />
         <TextInput
           style={styles.input}
           placeholder="Enter your password"
           selectionColor="#272727"
+          value={password}
+          onChangeText={(text) => setPassword(text)}
+          secureTextEntry
         />
         <TouchableOpacity style={{ width: "100%", alignItems: "flex-end" }}>
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
         </TouchableOpacity>
 
-        <TouchableOpacity style={styles.loginButton}>
+        <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={{ fontFamily: "Montserrat-SemiBold", color: "#FFFFFF" }}>
             Login
           </Text>
@@ -73,8 +113,11 @@ export default function Login() {
           <Text style={[styles.registerText, { alignSelf: "flex-end" }]}>
             Don't have an account?
           </Text>
-          <TouchableOpacity style={{ alignSelf: "flex-end" }}>
-            <Text style={[styles.registerText, { color: "#051220" }]}>
+          <TouchableOpacity
+            style={{ alignSelf: "flex-end" }}
+            onPress={() => navigation.navigate("Register")}
+          >
+            <Text style={[styles.registerText, { color: "#FAEDDF" }]}>
               {" "}
               Register Now
             </Text>
