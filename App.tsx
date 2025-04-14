@@ -4,11 +4,12 @@ import Header from "./Components/Header/Header";
 import Body from "./Components/Body/Body";
 import RecipePage from "./Components/Body/BodyComponents/MainComponents/RecipePage";
 import { useState } from "react";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, useNavigation } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ReturnButton from "./Components/Body/BodyComponents/SubComponents/RecipePageComponents/Buttons/ReturnButton";
 import FavoriteButton from "./Components/Body/BodyComponents/SubComponents/RecipePageComponents/Buttons/FavoriteButton";
-
+import Login from "./Components/Body/BodyComponents/MainComponents/Login";
+import Register from "./Components/Body/BodyComponents/MainComponents/Register";
 import useCustomFonts from "./JavaScriptFiles/Fonts";
 const Stack = createStackNavigator();
 
@@ -32,7 +33,17 @@ export default function App() {
     <NavigationContainer>
       <SafeAreaView style={styles.safeArea}>
         <StatusBar style="auto" />
-        <Stack.Navigator>
+        <Stack.Navigator initialRouteName="Login">
+          <Stack.Screen
+            name="Login"
+            component={Login}
+            options={{ headerShown: false }}
+          />
+          <Stack.Screen
+            name="Register"
+            component={Register}
+            options={{ headerShown: false }}
+          />
           <Stack.Screen
             name="Home"
             component={HomeScreen}
