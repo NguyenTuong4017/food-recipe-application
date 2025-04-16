@@ -37,7 +37,7 @@ export default function App() {
           <Stack.Screen
             name="Login"
             component={Login}
-            options={{ headerShown: false }}
+            options={{ headerShown: false, gestureEnabled: false }}
           />
           <Stack.Screen
             name="Register"
@@ -47,7 +47,7 @@ export default function App() {
           <Stack.Screen
             name="Home"
             component={HomeScreen}
-            options={{ headerShown: false }}
+            options={{ headerShown: false, gestureEnabled: false }}
           />
           <Stack.Screen
             name="Recipe"
