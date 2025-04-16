@@ -1,19 +1,35 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import MenuIcon from "../../../assets/icons/menuicon.svg";
+import SignOut from "../../../assets/icons/signout.svg";
 import useCustomFonts from "../../../JavaScriptFiles/Fonts";
+import { useNavigation } from "@react-navigation/native";
+import { signOut } from "firebase/auth";
+import auth from "../../../FirebaseConfig";
 
 export default function UserInfo() {
+  const navigation = useNavigation();
+
+  const handleLogout = async () => {
+    try {
+      await signOut(auth);
+      navigation.navigate("Login");
+    } catch (error) {
+      console.log("Logout error: ", error);
+    }
+  };
+
   return (
     <View style={styles.container}>
       {/* user avatar and menu icon */}
       <View style={styles.avatarAndIcon}>
-        <Image
-          source={require("../../../assets/avatar.png")}
-          style={styles.avatar}
-        />
         <TouchableOpacity>
+          <Image
+            source={require("../../../assets/avatar.png")}
+            style={styles.avatar}
+          />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={handleLogout}>
           <View style={styles.menuIconContainer}>
-            <MenuIcon width={"40%"} height={"40%"} />
+            <SignOut width={"40%"} height={"40%"} />
           </View>
         </TouchableOpacity>
       </View>
