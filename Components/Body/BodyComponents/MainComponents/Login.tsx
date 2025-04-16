@@ -1,4 +1,5 @@
 import {
+  Alert,
   StyleSheet,
   Text,
   TextInput,
@@ -7,28 +8,10 @@ import {
 } from "react-native";
 
 import useCustomFonts from "../../../../JavaScriptFiles/Fonts";
-
-import FacebookIcon from "../../../../assets/icons/facebookicon.svg";
-import XIcon from "../../../../assets/icons/xicon.svg";
-import GoogleIcon from "../../../../assets/icons/googleicon.svg";
 import { useEffect, useState } from "react";
-import {
-  signInWithEmailAndPassword,
-  onAuthStateChanged,
-  getAuth,
-} from "firebase/auth";
+import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
 import auth from "../../../../FirebaseConfig";
 import { useNavigation } from "@react-navigation/native";
-
-function LoginDivider() {
-  return (
-    <View style={styles.dividerContainer}>
-      <View style={styles.line} />
-      <Text style={styles.dividerText}>Or login with</Text>
-      <View style={styles.line} />
-    </View>
-  );
-}
 
 export default function Login() {
   const fontsLoaded = useCustomFonts();
@@ -82,9 +65,9 @@ export default function Login() {
           onChangeText={(text) => setPassword(text)}
           secureTextEntry
         />
-        <TouchableOpacity style={{ width: "100%", alignItems: "flex-end" }}>
+        {/* <TouchableOpacity style={{ width: "100%", alignItems: "flex-end" }}>
           <Text style={styles.forgotPassword}>Forgot Password?</Text>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
           <Text style={{ fontFamily: "Montserrat-SemiBold", color: "#FFFFFF" }}>
@@ -94,21 +77,6 @@ export default function Login() {
       </View>
 
       <View style={styles.otherOptions}>
-        <LoginDivider />
-
-        {/* Other platforms login */}
-        <View style={styles.iconsContainer}>
-          <TouchableOpacity style={styles.icon}>
-            <FacebookIcon width={30} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.icon}>
-            <GoogleIcon width={30} />
-          </TouchableOpacity>
-          <TouchableOpacity style={styles.icon}>
-            <XIcon width={30} />
-          </TouchableOpacity>
-        </View>
-
         <View style={styles.register}>
           <Text style={[styles.registerText, { alignSelf: "flex-end" }]}>
             Don't have an account?
