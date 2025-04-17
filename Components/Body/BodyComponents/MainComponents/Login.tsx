@@ -10,7 +10,7 @@ import {
 import useCustomFonts from "../../../../JavaScriptFiles/Fonts";
 import { useEffect, useState } from "react";
 import { signInWithEmailAndPassword, onAuthStateChanged } from "firebase/auth";
-import auth from "../../../../FirebaseConfig";
+import { auth } from "../../../../FirebaseConfig";
 import { useNavigation } from "@react-navigation/native";
 
 export default function Login() {
