@@ -3,7 +3,7 @@ import SignOut from "../../../assets/icons/signout.svg";
 import useCustomFonts from "../../../JavaScriptFiles/Fonts";
 import { useNavigation } from "@react-navigation/native";
 import { signOut } from "firebase/auth";
-import auth from "../../../FirebaseConfig";
+import { auth } from "../../../FirebaseConfig";
 
 export default function UserInfo() {
   const navigation = useNavigation();
@@ -21,7 +21,7 @@ export default function UserInfo() {
     <View style={styles.container}>
       {/* user avatar and menu icon */}
       <View style={styles.avatarAndIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
           <Image
             source={require("../../../assets/avatar.png")}
             style={styles.avatar}
