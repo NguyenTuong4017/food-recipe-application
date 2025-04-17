@@ -78,15 +78,16 @@ export default function FilterButtons({
   const handleFetch = (type: string, maxReadyTime: string, number: string) => {
     fetchRecipe(type, maxReadyTime, number)
       .then((data) => {
-        const transformedData = data.results.map(
-          (item: Object, index: number) => ({
-            ...item,
-            index: index,
-          })
-        );
-
-        //pass the data to body component
-        OnFetchRecipe(transformedData);
+        if (data) {
+          const transformedData = data.results.map(
+            (item: Object, index: number) => ({
+              ...item,
+              index: index,
+            })
+          );
+          //pass the data to body component
+          OnFetchRecipe(transformedData);
+        }
 
         //set the loading status then pass to body component
         loadingTest(false);
