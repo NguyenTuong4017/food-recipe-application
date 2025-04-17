@@ -4,8 +4,10 @@ import { useEffect, useState } from "react";
 import useCustomFonts from "../../../../JavaScriptFiles/Fonts";
 
 import NavigationBar from "../SubComponents/RecipePageComponents/NavigationBar/NavigationBar";
+import FavoriteButton from "../SubComponents/RecipePageComponents/Buttons/FavoriteButton";
+import { useLayoutEffect } from "react";
 
-export default function RecipePage({ route }) {
+export default function RecipePage({ route, navigation }) {
   const { id } = route.params;
   const [recipeInfo, setRecipeInfo] = useState({});
   const [height, setHeight] = useState(0);
@@ -16,7 +18,12 @@ export default function RecipePage({ route }) {
   //fetch the recipe data by id
   const handleFetch = () => {
     fetchRecipeInfomation(id)
-      .then((data) => setRecipeInfo(data))
+      .then((data) => {
+        setRecipeInfo(data);
+        navigation.setOptions({
+          headerRight: () => <FavoriteButton recipeInfo={data} />,
+        });
+      })
       .catch((err) => console.log("Error: ", err));
   };
 
