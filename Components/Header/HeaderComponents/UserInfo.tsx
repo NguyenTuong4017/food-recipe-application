@@ -56,14 +56,14 @@ const styles = StyleSheet.create({
     justifyContent: "space-between",
   },
   avatar: {
-    width: 50,
-    height: 50,
+    width: 55,
+    height: 55,
     borderRadius: 50,
     marginLeft: 15,
   },
   menuIconContainer: {
-    width: 50,
-    height: 50,
+    width: 55,
+    height: 55,
     backgroundColor: "#F5F5F5",
     alignItems: "center",
     justifyContent: "center",
