@@ -9,7 +9,7 @@ import {
 } from "react-native";
 import { useState } from "react";
 import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
-import auth from "../../../../FirebaseConfig";
+import { auth } from "../../../../FirebaseConfig";
 import useCustomFonts from "../../../../JavaScriptFiles/Fonts";
 import { useNavigation } from "@react-navigation/native";
 
@@ -19,7 +19,7 @@ export default function Register() {
 
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [displayName, setDisplayName] = useState("");
+  const [username, setUsername] = useState("");
 
   const handleRegister = async () => {
     try {
@@ -29,8 +29,22 @@ export default function Register() {
         password
       );
 
+      await updateProfile(userCredential.user, {
+        displayName: username,
+      });
+
+      setUsername("");
+      setEmail("");
+      setPassword("");
       console.log("Registered as:", userCredential.user.email);
-      Alert.alert("Success", "Account created successfully!");
+      Alert.alert("Success", "Account created successfully!", [
+        {
+          text: "OK",
+          onPress: () => {
+            navigation.navigate("Login");
+          },
+        },
+      ]);
     } catch (error: any) {
       console.log("Registration Error:", error.message);
       Alert.alert("Registration Failed", error.message);
@@ -46,8 +60,8 @@ export default function Register() {
           style={styles.input}
           placeholder="Username"
           selectionColor="#272727"
-          value={displayName}
-          onChangeText={(text) => setDisplayName(text)}
+          value={username}
+          onChangeText={(text) => setUsername(text)}
         />
         <TextInput
           style={styles.input}
