@@ -22,7 +22,7 @@ export default function FavoriteButton({ recipeInfo }) {
 
     if (auth.currentUser) {
       const userId = auth.currentUser.uid;
-      const favoriteList = collection(db, "user", userId, "favorite");
+      const favoriteList = collection(db, "users", userId, "favorites");
 
       try {
         const q = query(favoriteList, where("recipeId", "==", recipeInfo.id));
@@ -54,7 +54,7 @@ export default function FavoriteButton({ recipeInfo }) {
     const checkIfFavorite = async () => {
       if (auth.currentUser) {
         const userId = auth.currentUser.uid;
-        const favoritesRef = collection(db, "user", userId, "favorite");
+        const favoritesRef = collection(db, "users", userId, "favorites");
         const q = query(favoritesRef, where("recipeId", "==", recipeInfo.id));
         const querySnapshot = await getDocs(q);
         if (!querySnapshot.empty) {
