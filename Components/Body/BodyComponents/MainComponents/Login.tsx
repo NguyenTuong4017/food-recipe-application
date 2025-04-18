@@ -40,6 +40,10 @@ export default function Login() {
       console.log("Login success: ", userCredential.user.email);
       navigation.navigate("Home");
     } catch (error) {
+      Alert.alert(
+        "Login Failed",
+        "Email or password is incorrect. Please check and try again."
+      );
       console.log("Login error: ", error);
     }
   };
