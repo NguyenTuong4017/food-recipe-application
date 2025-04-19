@@ -1,4 +1,4 @@
-🍽️ Food Recipe Application
+## 🍽️ Food Recipe Application
 
 Overview
 
@@ -22,17 +22,17 @@ Developed as part of a coursework project, it offers a strong foundation for fur
 	•	API: Spoonacular API for fetching recipes
 
 🚀 Installation
-## 1. Clone the Repository
-'''bash
+# 1. Clone the Repository
+```
 git clone https://github.com/NguyenTuong4017/food-recipe-application.git
 cd food-recipe-application
-'''
-## 2. Install Dependencies
-'''bash
+```
+# 2. Install Dependencies
+```
 npm install
-'''
+```
 
-## 3. Run the app
-'''bash
+# 3. Run the app
+```
 npx expo start
-'''
+```
