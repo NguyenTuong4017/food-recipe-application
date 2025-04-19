@@ -12,6 +12,7 @@ import Login from "./Components/Body/BodyComponents/MainComponents/Login";
 import Register from "./Components/Body/BodyComponents/MainComponents/Register";
 import useCustomFonts from "./JavaScriptFiles/Fonts";
 import Profile from "./Components/Body/BodyComponents/MainComponents/Profile";
+import Edit from "./Components/Body/BodyComponents/MainComponents/Edit";
 const Stack = createStackNavigator();
 
 export default function App() {
@@ -74,6 +75,23 @@ export default function App() {
             options={({ navigation }) => ({
               headerShown: true,
               headerLeft: () => <ReturnButton navigation={navigation} />,
+              headerShadowVisible: false,
+              headerTitleStyle: {
+                fontSize: 22,
+                width: "100%",
+                fontFamily: "Montserrat-Medium",
+              },
+              headerStyle: {
+                backgroundColor: "#FFFFFF",
+              },
+            })}
+          />
+
+          <Stack.Screen
+            name="Edit"
+            component={Edit}
+            options={() => ({
+              headerShown: false,
               headerShadowVisible: false,
               headerTitleStyle: {
                 fontSize: 22,
