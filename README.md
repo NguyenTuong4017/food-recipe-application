@@ -23,16 +23,16 @@ Developed as part of a coursework project, it offers a strong foundation for fur
 
 🚀 Installation
 ## 1. Clone the Repository
-'''
+'''bash
 git clone https://github.com/NguyenTuong4017/food-recipe-application.git
 cd food-recipe-application
 '''
 ## 2. Install Dependencies
-'''
+'''bash
 npm install
 '''
 
 ## 3. Run the app
-'''
+'''bash
 npx expo start
 '''
