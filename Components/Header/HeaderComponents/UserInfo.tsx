@@ -23,7 +23,7 @@ export default function UserInfo() {
       <View style={styles.avatarAndIcon}>
         <TouchableOpacity onPress={() => navigation.navigate("Profile")}>
           <Image
-            source={require("../../../assets/avatar.png")}
+            source={require("../../../assets/blank.png")}
             style={styles.avatar}
           />
         </TouchableOpacity>
