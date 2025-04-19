@@ -1,28 +1,38 @@
-# Food Recipe Application
+🍽️ Food Recipe Application
 
 Overview
-This application helps users to find some recipes. It features a user friendly UI. Built using React Native and custom UI components, the app was developed as part of a coursework project, offering a solid foundation with significant potential for future improvements.
 
-Features
-User authentication: Login and Register with Firebase authentication.
-Each user can create their own favorite recipes list.
-Smooth swiping animation.
-Search function for user to find the recipe.
-Filter Buttons for each type of recipe (Dinner, Breakfast, ...).
-Allow users to update their infomation.
+This mobile application helps users easily discover and save delicious recipes.
+Built with React Native and custom UI components, it provides a clean user experience and is powered by Firebase services.
+Developed as part of a coursework project, it offers a strong foundation for further enhancements.
 
-Technology Stacks
-Frontend: React Native with Expo.
-Custom UI built for the app.
-Authentication: Firebase authentication.
-Database: Firestore Database.
-API: Spooncular API.
+✨ Features
+	•	🔐 User Authentication: Login and Register using Firebase Authentication.
+	•	📋 Favorite Recipes: Users can save their favorite recipes to their personal list.
+	•	🤏 Smooth Swiping Animation: Modern and interactive swiping experience.
+	•	🔎 Search Functionality: Find recipes by typing keywords.
+	•	🍳 Filter Buttons: Browse by categories like Breakfast, Dinner, etc.
+	•	📝 Profile Management: Users can update their information (username, password, avatar).
 
-Installation
-1. Clone the repository
-   git clone https://github.com/NguyenTuong4017/food-recipe-application.git
-   cd food-recipe-application
-2. Install dependencies
-  npm install
-3. Run the app
-  npm expo start
+🛠️ Technology Stack
+	•	Frontend: React Native (Expo framework)
+	•	Custom UI: Designed with React Native styles and components
+	•	Authentication: Firebase Authentication
+	•	Database: Firestore (Firebase NoSQL Database)
+	•	API: Spoonacular API for fetching recipes
+
+🚀 Installation
+## 1. Clone the Repository
+'''
+git clone https://github.com/NguyenTuong4017/food-recipe-application.git
+cd food-recipe-application
+'''
+## 2. Install Dependencies
+'''
+npm install
+'''
+
+## 3. Run the app
+'''
+npx expo start
+'''
