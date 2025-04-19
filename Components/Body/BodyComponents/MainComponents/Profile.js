@@ -17,29 +17,31 @@ export default function Profile({ navigation }) {
   const [recipeList, setRecipeList] = useState([]);
   const user = auth.currentUser;
 
+  //Get favorite recipes from firebase
   async function getFavoriteRecipes() {
     if (user) {
-      const userId = user.uid;
-      const refList = collection(db, "users", userId, "favorites");
+      const userId = user.uid; //user unique id
+      const refList = collection(db, "users", userId, "favorites"); //reference to the favorites
 
       try {
-        const querySnapshot = await getDocs(refList);
+        const querySnapshot = await getDocs(refList); // fetch all documents inside the favorites collection
         const favoriteList = querySnapshot.docs.map((doc) => ({
-          docId: doc.id,
-          ...doc.data(),
+          docId: doc.id, //save the doc id
+          ...doc.data(), // save all property inside the doc (title, image, recipeId,...)
         }));
 
         return favoriteList;
       } catch (error) {
         console.error("Error fetching favorites:", error);
-        return [];
+        return []; //return an empty list if there is error
       }
     } else {
       console.log("User not logged in");
-      return [];
+      return []; // if user is not logged in, return an empty list
     }
   }
 
+  //fetch the favorite recipes when user navigate to the Profile
   useEffect(() => {
     const fetchFavorites = async () => {
       const favorites = await getFavoriteRecipes();
@@ -51,9 +53,10 @@ export default function Profile({ navigation }) {
 
   return (
     <ScrollView style={styles.container}>
+      {/* Avatar, Username and Email */}
       <View style={styles.informationContainer}>
         <Image
-          source={require("../../../../assets/avatar.png")}
+          source={require("../../../../assets/blank.png")}
           style={styles.avatar}
         />
 
@@ -77,13 +80,18 @@ export default function Profile({ navigation }) {
           >
             {user.email}
           </Text>
-          <TouchableOpacity style={styles.editButton}>
+          <TouchableOpacity
+            style={styles.editButton}
+            onPress={() => navigation.navigate("Edit")}
+          >
             <Text style={{ fontSize: 15, fontFamily: "Montserrat-Medium" }}>
               Edit
             </Text>
           </TouchableOpacity>
         </View>
       </View>
+
+      {/* Favorite Recipes List */}
       <View style={styles.recipeContainer}>
         <Text
           style={{
