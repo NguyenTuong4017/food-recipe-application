@@ -27,17 +27,17 @@ Developed as part of a coursework project, it offers a strong foundation for fur
 ---
 
 ## 🚀 Installation
-# 1. Clone the Repository
+### 1. Clone the Repository
 ```
 git clone https://github.com/NguyenTuong4017/food-recipe-application.git
 cd food-recipe-application
 ```
-# 2. Install Dependencies
+### 2. Install Dependencies
 ```
 npm install
 ```
 
-# 3. Run the app
+### 3. Run the app
 ```
 npx expo start
 ```
