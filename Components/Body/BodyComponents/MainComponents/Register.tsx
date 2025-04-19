@@ -23,20 +23,25 @@ export default function Register() {
 
   const handleRegister = async () => {
     try {
+      //create a new user with email and password
       const userCredential = await createUserWithEmailAndPassword(
         auth,
         email,
         password
       );
 
+      //set the username
       await updateProfile(userCredential.user, {
         displayName: username,
       });
 
+      //reset to blank after successful creation
       setUsername("");
       setEmail("");
       setPassword("");
       console.log("Registered as:", userCredential.user.email);
+
+      //pop up noti and navigate to login after creation
       Alert.alert("Success", "Account created successfully!", [
         {
           text: "OK",
@@ -55,6 +60,7 @@ export default function Register() {
     <View style={styles.container}>
       <Text style={styles.header}>Create your account</Text>
 
+      {/* input fields */}
       <View style={styles.inputContainer}>
         <TextInput
           style={styles.input}
@@ -90,6 +96,7 @@ export default function Register() {
         </TouchableOpacity>
       </View>
 
+      {/* bottom text to navigate back to login */}
       <View style={styles.bottomText}>
         <Text style={styles.registerText}>Already have an account?</Text>
         <TouchableOpacity onPress={() => navigation.navigate("Login")}>
