@@ -8,7 +8,7 @@ Developed as part of a coursework project, it offers a strong foundation for fur
 ## 📸 Screenshots
 
 ### 🏠 Home Screen
-![Home Screen](./Project%20Images/home.png)
+![Home Screen](./Project%20Images/home.PNG)
 
 ### 📋 Recipe Detail
 ![Recipe Detail](./Project%20Images/RecipeDetailScreen.png)
