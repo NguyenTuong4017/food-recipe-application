@@ -4,6 +4,7 @@
 This mobile application helps users easily discover and save delicious recipes.  
 Built with React Native and custom UI components, it provides a clean and modern user experience, powered by Firebase services.  
 Developed as part of a coursework project, it offers a strong foundation for further enhancements.
+🎥 [Watch Demo Video on YouTube](https://youtu.be/bDkUdxNq8oo)
 
 ## 📸 Screenshots
 
@@ -13,6 +14,11 @@ Developed as part of a coursework project, it offers a strong foundation for fur
   <img src="./Project%20Images/login.PNG" alt="Recipe Detail" width="250"/>
   &nbsp; &nbsp; &nbsp;
   <img src="./Project%20Images/profile.PNG" alt="Profile Screen" width="250"/>
+  &nbsp; &nbsp; &nbsp;
+  <img src="./Project%20Images/register.PNG" alt="Profile Screen" width="250"/>
+  &nbsp; &nbsp; &nbsp;
+  <img src="./Project%20Images/recipe.PNG" alt="Profile Screen" width="250"/>
+  &nbsp; &nbsp; &nbsp;
 </p>
 
 ---
