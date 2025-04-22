@@ -7,14 +7,13 @@ Developed as part of a coursework project, it offers a strong foundation for fur
 
 ## 📸 Screenshots
 
-### 🏠 Home Screen
-![Home Screen](./Project%20Images/home.PNG)
-
-### 📋 Recipe Detail
-![Recipe Detail](./Project%20Images/RecipeDetailScreen.png)
-
-### 🙍‍♂️ Profile Page
-![Profile Page](./Project%20Images/ProfileScreen.png)
+<p align="center">
+  <img src="./Project%20Images/home.PNG" alt="Home Screen" width="250"/>
+  &nbsp; &nbsp; &nbsp;
+  <img src="./Project%20Images/login.PNG" alt="Recipe Detail" width="250"/>
+  &nbsp; &nbsp; &nbsp;
+  <img src="./Project%20Images/profile.PNG" alt="Profile Screen" width="250"/>
+</p>
 
 ---
 
