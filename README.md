@@ -35,7 +35,6 @@ Developed as part of a coursework project, it offers a strong foundation for fur
 
 ## 🛠️ Technology Stack
 - **Frontend**: React Native (Expo framework)
-- **Custom UI**: Built using React Native styles and components
 - **Authentication**: Firebase Authentication
 - **Database**: Firestore (Firebase NoSQL Database)
 - **API**: Spoonacular API for fetching recipes
